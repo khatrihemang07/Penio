@@ -145,12 +145,23 @@ function App() {
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
   }, []);
 
-  // 响应 mouseSettings 中的光圈样式变化
+  // 响应 mouseSettings 中的光圈样式和启用状态变化
   useEffect(() => {
     if (loading) return;
+    const enabled = mouseSettings.enableAperture !== false;
+    if (!enabled) {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) ctx.clearRect(0, 0, SIZE, SIZE);
+      }
+      return;
+    }
     const style = (mouseSettings.apertureStyle as StyleName) || "neon";
     redraw(style);
   }, [mouseSettings, loading, redraw]);
+
+  if (mouseSettings.enableAperture === false) return null;
 
   return (
     <canvas

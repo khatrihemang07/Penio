@@ -777,7 +777,6 @@ function 鼠标设置页面() {
                     enableAperture: newValue,
                 }
             });
-            await invoke('set_aperture_enabled', { enabled: newValue });
             notify(t(newValue ? 'mouse.messages.apertureEnabled' : 'mouse.messages.apertureDisabled'), 'success');
         } catch (error) {
             console.error('保存光圈设置失败:', error);
