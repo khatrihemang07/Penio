@@ -17,6 +17,8 @@
     "secondaryColor": "副颜色",
     "enableAperture": "开启鼠标光圈",
     "apertureStyle": "光圈样式",
+    "enableApertureAnimation": "光圈动效",
+    "apertureScale": "光圈缩放",
     "effects": {
       "ripple": "水波纹",
       "firework": "烟花",
@@ -31,7 +33,10 @@
       "fire": "火焰",
       "frost": "冰霜",
       "rainbow": "彩虹",
-      "shadow": "暗影"
+      "shadow": "暗影",
+      "sparkle": "星芒",
+      "firefly": "萤火",
+      "ripple": "涟漪"
     },
     "messages": {
       "enabled": "已启用点击特效",
@@ -48,7 +53,10 @@
       "vipOnly": "点击特效类型为会员专享功能",
       "apertureEnabled": "已开启鼠标光圈",
       "apertureDisabled": "已关闭鼠标光圈",
-      "apertureStyleChanged": "光圈样式已切换为 {{style}}"
+      "apertureStyleChanged": "光圈样式已切换为 {{style}}",
+      "apertureAnimationEnabled": "已开启光圈动效",
+      "apertureAnimationDisabled": "已关闭光圈动效",
+      "apertureSizeUpdated": "光圈缩放已更新"
     }
   },
   "keyboard": {

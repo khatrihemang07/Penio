@@ -17,6 +17,8 @@
     "secondaryColor": "Secondary Color",
     "enableAperture": "Enable Cursor Aperture",
     "apertureStyle": "Aperture Style",
+    "enableApertureAnimation": "Aperture Animation",
+    "apertureScale": "Aperture Scale",
     "effects": {
       "ripple": "Ripple",
       "firework": "Firework",
@@ -31,7 +33,10 @@
       "fire": "Fire",
       "frost": "Frost",
       "rainbow": "Rainbow",
-      "shadow": "Shadow"
+      "shadow": "Shadow",
+      "sparkle": "Sparkle",
+      "firefly": "Firefly",
+      "ripple": "Ripple"
     },
     "messages": {
       "enabled": "Click effect enabled",
@@ -48,7 +53,10 @@
       "vipOnly": "Click effect type is a VIP feature",
       "apertureEnabled": "Cursor aperture enabled",
       "apertureDisabled": "Cursor aperture disabled",
-      "apertureStyleChanged": "Aperture style changed to {{style}}"
+      "apertureStyleChanged": "Aperture style changed to {{style}}",
+      "apertureAnimationEnabled": "Aperture animation enabled",
+      "apertureAnimationDisabled": "Aperture animation disabled",
+      "apertureSizeUpdated": "Aperture size updated"
     }
   },
   "keyboard": {

@@ -31,7 +31,7 @@ import { useShortcut } from '../hooks/useShortcut';
 let settingsStore: Store | null = null;
 
 // 光圈样式类型
-export type ApertureStyle = 'neon' | 'golden' | 'aurora' | 'fire' | 'frost' | 'rainbow' | 'shadow';
+export type ApertureStyle = 'neon' | 'golden' | 'aurora' | 'fire' | 'frost' | 'rainbow' | 'shadow' | 'sparkle' | 'firefly' | 'ripple';
 
 // 鼠标设置接口
 export interface MouseSettings {
@@ -43,6 +43,8 @@ export interface MouseSettings {
     secondaryColor?: string;
     enableAperture?: boolean;
     apertureStyle?: ApertureStyle;
+    enableApertureAnimation?: boolean;
+    apertureScale?: number;
 }
 
 // 键盘设置接口
@@ -89,6 +91,8 @@ const defaultSettings: AppSettings = {
         speed: 1.0,
         enableAperture: true,
         apertureStyle: 'neon',
+        enableApertureAnimation: true,
+        apertureScale: 1.0,
     },
     keyboard: {
         enableKeyboardEcho: true,

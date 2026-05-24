@@ -571,6 +571,8 @@ function 鼠标设置页面() {
     const [secondaryColorAnchor, setSecondaryColorAnchor] = useState<HTMLElement | null>(null);
     const [enableAperture, setEnableAperture] = useState(true);
     const [apertureStyle, setApertureStyle] = useState<ApertureStyle>('neon');
+    const [enableApertureAnimation, setEnableApertureAnimation] = useState(true);
+    const [apertureScale, setApertureScale] = useState(1.0);
 
     const { notify } = useSnackbar();
 
@@ -588,6 +590,8 @@ function 鼠标设置页面() {
                 setSecondaryColor(settings.mouse?.secondaryColor ?? 'magenta');
                 setEnableAperture(settings.mouse?.enableAperture ?? true);
                 setApertureStyle(settings.mouse?.apertureStyle ?? 'neon');
+                setEnableApertureAnimation(settings.mouse?.enableApertureAnimation ?? true);
+                setApertureScale(settings.mouse?.apertureScale ?? 1.0);
             } catch (error) {
                 console.error('加载鼠标设置失败:', error);
                 notify(t('mouse.messages.loadFailed'), 'error');
@@ -785,11 +789,58 @@ function 鼠标设置页面() {
         }
     };
 
+    // 处理光圈动效开关
+    const handleEnableApertureAnimationChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = event.target.checked;
+        setEnableApertureAnimation(newValue);
+
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                mouse: {
+                    ...currentSettings.mouse,
+                    enableApertureAnimation: newValue,
+                }
+            });
+            notify(t(newValue ? 'mouse.messages.apertureAnimationEnabled' : 'mouse.messages.apertureAnimationDisabled'), 'success');
+        } catch (error) {
+            console.error('保存光圈动效设置失败:', error);
+            notify(t('mouse.messages.saveFailed'), 'error');
+            setEnableApertureAnimation(!newValue);
+        }
+    };
+
+    // 处理光圈缩放变化
+    const handleApertureScaleChange = async (value: number) => {
+        const clampedValue = Math.max(0.1, Math.min(1.0, value));
+        setApertureScale(clampedValue);
+
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                mouse: {
+                    ...currentSettings.mouse,
+                    apertureScale: clampedValue,
+                }
+            });
+        } catch (error) {
+            console.error('保存光圈缩放失败:', error);
+            notify(t('mouse.messages.saveFailed'), 'error');
+            const currentSettings = await getSettings();
+            setApertureScale(currentSettings.mouse?.apertureScale ?? 1.0);
+        }
+    };
+
+    const handleApertureScaleChangeCommitted = async () => {
+        notify(t('mouse.messages.apertureSizeUpdated'), 'success');
+    };
+
     // 处理光圈样式切换
     const handleApertureStyleChange = async (event: any) => {
         const styleMap: Record<number, ApertureStyle> = {
             0: 'neon', 1: 'golden', 2: 'aurora', 3: 'fire',
-            4: 'frost', 5: 'rainbow', 6: 'shadow',
+            4: 'frost', 5: 'rainbow', 6: 'shadow', 7: 'sparkle',
+            8: 'firefly', 9: 'ripple',
         };
         const newStyle = styleMap[event.target.value as number];
         setApertureStyle(newStyle);
@@ -815,7 +866,8 @@ function 鼠标设置页面() {
     const getApertureStyleValue = () => {
         const valueMap: Record<ApertureStyle, number> = {
             neon: 0, golden: 1, aurora: 2, fire: 3,
-            frost: 4, rainbow: 5, shadow: 6,
+            frost: 4, rainbow: 5, shadow: 6, sparkle: 7,
+            firefly: 8, ripple: 9,
         };
         return valueMap[apertureStyle];
     };
@@ -1055,6 +1107,50 @@ function 鼠标设置页面() {
                     />
 
                     <SettingField
+                        label={t('mouse.enableApertureAnimation')}
+                        value={
+                            <Switch
+                                checked={enableApertureAnimation}
+                                onChange={handleEnableApertureAnimationChange}
+                                disabled={!enableAperture}
+                            />
+                        }
+                    />
+
+                    <SettingField
+                        label={t('mouse.apertureScale')}
+                        value={
+                            <>
+                                <Slider
+                                    value={apertureScale}
+                                    onChange={(_, value) => handleApertureScaleChange(value as number)}
+                                    onChangeCommitted={() => handleApertureScaleChangeCommitted()}
+                                    min={0.1}
+                                    max={1.0}
+                                    step={0.1}
+                                    valueLabelDisplay="auto"
+                                    disabled={!enableAperture}
+                                    sx={{ width: '9.375rem', mr: 2 }}
+                                />
+                                <TextField
+                                    value={apertureScale}
+                                    onChange={(e) => {
+                                        const value = Number(e.target.value);
+                                        if (!isNaN(value)) {
+                                            handleApertureScaleChange(value);
+                                        }
+                                    }}
+                                    onBlur={() => handleApertureScaleChangeCommitted()}
+                                    type="number"
+                                    size="small"
+                                    sx={{ width: 'max-content' }}
+                                    inputProps={{ min: 0.1, max: 1.0, step: 0.1 }}
+                                />
+                            </>
+                        }
+                    />
+
+                    <SettingField
                         label={t('mouse.apertureStyle')}
                         value={
                             <Select
@@ -1079,6 +1175,9 @@ function 鼠标设置页面() {
                                 <MenuItem value={4}>{t('mouse.apertureStyles.frost')}</MenuItem>
                                 <MenuItem value={5}>{t('mouse.apertureStyles.rainbow')}</MenuItem>
                                 <MenuItem value={6}>{t('mouse.apertureStyles.shadow')}</MenuItem>
+                                <MenuItem value={7}>{t('mouse.apertureStyles.sparkle')}</MenuItem>
+                                <MenuItem value={8}>{t('mouse.apertureStyles.firefly')}</MenuItem>
+                                <MenuItem value={9}>{t('mouse.apertureStyles.ripple')}</MenuItem>
                             </Select>
                         }
                     />
