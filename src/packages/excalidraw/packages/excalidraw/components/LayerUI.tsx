@@ -142,6 +142,36 @@ const LayerUI = ({
   const device = useDevice();
   const tunnels = useInitializeTunnels();
 
+  const [toolbarVisible, setToolbarVisible] = React.useState(true);
+  const [toastMsg, setToastMsg] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "h" && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        setToolbarVisible((prev) => !prev);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // show toast when toolbar toggled
+  const prevVisibleRef = React.useRef(toolbarVisible);
+  React.useEffect(() => {
+    if (prevVisibleRef.current === toolbarVisible) return;
+    prevVisibleRef.current = toolbarVisible;
+    const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+    const key = isMac ? "⌘+H" : "Ctrl+H";
+    setToastMsg(
+      toolbarVisible
+        ? `工具栏已显示 (${key} 切换)`
+        : `工具栏已隐藏 (${key} 恢复)`,
+    );
+    const timer = setTimeout(() => setToastMsg(null), 2000);
+    return () => clearTimeout(timer);
+  }, [toolbarVisible]);
+
   const TunnelsJotaiProvider = tunnels.tunnelsJotai.Provider;
 
   const [eyeDropperState, setEyeDropperState] = useAtom(activeEyeDropperAtom);
@@ -234,7 +264,11 @@ const LayerUI = ({
 
     return (
       <FixedSideContainer side="top">
-        <div className="App-menu App-menu_top">
+        <div
+          className={clsx("App-menu App-menu_top App-toolbar--autohide", {
+            "App-toolbar--hidden": !toolbarVisible,
+          })}
+        >
           <Stack.Col gap={6} className={clsx("App-menu_top__left")}>
             {renderCanvasActions()}
             {shouldRenderSelectedShapeActions && renderSelectedShapeActions()}
@@ -531,6 +565,9 @@ const LayerUI = ({
             }
           >
             {renderWelcomeScreen && <tunnels.WelcomeScreenCenterTunnel.Out />}
+            {toastMsg && (
+              <div className="App-toolbar-toast">{toastMsg}</div>
+            )}
             {renderFixedSideContainer()}
             <Footer
               appState={appState}
