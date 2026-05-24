@@ -15,13 +15,11 @@ static APERTURE_DISABLED: AtomicBool = AtomicBool::new(false);
 
 #[cfg(target_os = "macos")]
 fn get_cursor_position() -> (f64, f64) {
-    use core_graphics::event::{CGEvent, CGEventTapLocation};
-    match CGEvent::new(CGEventTapLocation::HID) {
-        Some(event) => {
-            let location = event.location();
-            (location.x, location.y)
-        }
-        None => (0.0, 0.0),
+    use cocoa::appkit::NSEvent;
+    use cocoa::base::nil;
+    unsafe {
+        let point = NSEvent::mouseLocation(nil);
+        (point.x, point.y)
     }
 }
 
@@ -132,19 +130,19 @@ pub fn start_cursor_polling(app_handle: AppHandle) {
         return; // Already running
     }
 
-    #[cfg(target_os = "linux")]
-    let x11_display = unsafe {
-        let display = x11::xlib::XOpenDisplay(std::ptr::null());
-        if display.is_null() {
-            eprintln!("Failed to open X11 display for aperture");
-            APERTURE_RUNNING.store(false, Ordering::SeqCst);
-            return;
-        }
-        let root = x11::xlib::XDefaultRootWindow(display);
-        (display, root)
-    };
-
     thread::spawn(move || {
+        #[cfg(target_os = "linux")]
+        let (display, root) = unsafe {
+            let d = x11::xlib::XOpenDisplay(std::ptr::null());
+            if d.is_null() {
+                eprintln!("Failed to open X11 display for aperture");
+                APERTURE_RUNNING.store(false, Ordering::SeqCst);
+                return;
+            }
+            let r = x11::xlib::XDefaultRootWindow(d);
+            (d, r)
+        };
+
         loop {
             if !APERTURE_RUNNING.load(Ordering::SeqCst) {
                 break;
@@ -154,7 +152,7 @@ pub fn start_cursor_polling(app_handle: AppHandle) {
             let (cx, cy) = get_cursor_position();
 
             #[cfg(target_os = "linux")]
-            let (cx, cy) = get_cursor_position(x11_display.0, x11_display.1);
+            let (cx, cy) = get_cursor_position(display, root);
 
             if let Some(window) = app_handle.get_webview_window("aperture") {
                 if let Ok(size) = window.inner_size() {
@@ -169,7 +167,7 @@ pub fn start_cursor_polling(app_handle: AppHandle) {
 
         #[cfg(target_os = "linux")]
         unsafe {
-            x11::xlib::XCloseDisplay(x11_display.0);
+            x11::xlib::XCloseDisplay(display);
         }
     });
 
