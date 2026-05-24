@@ -1,0 +1,18 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  width: 150px;
+  height: 150px;
+}
+
+#root {
+  width: 150px;
+  height: 150px;
+}
+
+canvas {
+  display: block;
+  pointer-events: none;
+}

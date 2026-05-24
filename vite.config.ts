@@ -37,6 +37,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         'motion-board': 'motion-board.html',
+        'aperture': 'aperture.html',
       },
       external: [
         // 排除测试相关的模块

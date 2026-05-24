@@ -41,6 +41,8 @@ import * as AutoStart from "@tauri-apps/plugin-autostart";
 import ShortcutField from "./ShortcutField";
 import Stack from "@mui/material/Stack";
 import { getSettings, updateSettings } from "../store/settings";
+import type { ApertureStyle } from "../store/settings";
+import { invoke } from "@tauri-apps/api/core";
 import { SettingField } from "./SettingField.js";
 import Sketch from '@uiw/react-color-sketch';
 import { rgbaStringToHsva } from '@uiw/color-convert';
@@ -567,6 +569,8 @@ function 鼠标设置页面() {
     const [secondaryColor, setSecondaryColor] = useState('magenta');
     const [primaryColorAnchor, setPrimaryColorAnchor] = useState<HTMLElement | null>(null);
     const [secondaryColorAnchor, setSecondaryColorAnchor] = useState<HTMLElement | null>(null);
+    const [enableAperture, setEnableAperture] = useState(true);
+    const [apertureStyle, setApertureStyle] = useState<ApertureStyle>('neon');
 
     const { notify } = useSnackbar();
 
@@ -582,6 +586,8 @@ function 鼠标设置页面() {
                 setSpeed(settings.mouse?.speed ?? 1.0);
                 setPrimaryColor(settings.mouse?.primaryColor ?? 'cyan');
                 setSecondaryColor(settings.mouse?.secondaryColor ?? 'magenta');
+                setEnableAperture(settings.mouse?.enableAperture ?? true);
+                setApertureStyle(settings.mouse?.apertureStyle ?? 'neon');
             } catch (error) {
                 console.error('加载鼠标设置失败:', error);
                 notify(t('mouse.messages.loadFailed'), 'error');
@@ -756,6 +762,63 @@ function 鼠标设置页面() {
             console.error('保存副颜色失败:', error);
             notify(t('mouse.messages.saveFailed'), 'error');
         }
+    };
+
+    // 处理光圈开关
+    const handleEnableApertureChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = event.target.checked;
+        setEnableAperture(newValue);
+
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                mouse: {
+                    ...currentSettings.mouse,
+                    enableAperture: newValue,
+                }
+            });
+            await invoke('set_aperture_enabled', { enabled: newValue });
+            notify(t(newValue ? 'mouse.messages.apertureEnabled' : 'mouse.messages.apertureDisabled'), 'success');
+        } catch (error) {
+            console.error('保存光圈设置失败:', error);
+            notify(t('mouse.messages.saveFailed'), 'error');
+            setEnableAperture(!newValue);
+        }
+    };
+
+    // 处理光圈样式切换
+    const handleApertureStyleChange = async (event: any) => {
+        const styleMap: Record<number, ApertureStyle> = {
+            0: 'neon', 1: 'golden', 2: 'aurora', 3: 'fire',
+            4: 'frost', 5: 'rainbow', 6: 'shadow',
+        };
+        const newStyle = styleMap[event.target.value as number];
+        setApertureStyle(newStyle);
+
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                mouse: {
+                    ...currentSettings.mouse,
+                    apertureStyle: newStyle,
+                }
+            });
+            await invoke('switch_aperture_style', { style: newStyle });
+            notify(t('mouse.messages.apertureStyleChanged', {
+                style: t(`mouse.apertureStyles.${newStyle}`)
+            }), 'success');
+        } catch (error) {
+            console.error('保存光圈样式失败:', error);
+            notify(t('mouse.messages.saveFailed'), 'error');
+        }
+    };
+
+    const getApertureStyleValue = () => {
+        const valueMap: Record<ApertureStyle, number> = {
+            neon: 0, golden: 1, aurora: 2, fire: 3,
+            frost: 4, rainbow: 5, shadow: 6,
+        };
+        return valueMap[apertureStyle];
     };
 
     return (
@@ -978,6 +1041,46 @@ function 鼠标设置页面() {
                                     />
                                 </Popover>
                             </>
+                        }
+                    />
+
+                    {/* 鼠标光圈 */}
+                    <SettingField
+                        label={t('mouse.enableAperture')}
+                        value={
+                            <Switch
+                                checked={enableAperture}
+                                onChange={handleEnableApertureChange}
+                            />
+                        }
+                    />
+
+                    <SettingField
+                        label={t('mouse.apertureStyle')}
+                        value={
+                            <Select
+                                id="aperture-style-select"
+                                value={getApertureStyleValue()}
+                                onChange={handleApertureStyleChange}
+                                disabled={!enableAperture}
+                                size="small"
+                                MenuProps={{
+                                    slotProps: {
+                                        list: {
+                                            dense: true,
+                                        }
+                                    }
+                                }}
+                                sx={{ minWidth: '8rem' }}
+                            >
+                                <MenuItem value={0}>{t('mouse.apertureStyles.neon')}</MenuItem>
+                                <MenuItem value={1}>{t('mouse.apertureStyles.golden')}</MenuItem>
+                                <MenuItem value={2}>{t('mouse.apertureStyles.aurora')}</MenuItem>
+                                <MenuItem value={3}>{t('mouse.apertureStyles.fire')}</MenuItem>
+                                <MenuItem value={4}>{t('mouse.apertureStyles.frost')}</MenuItem>
+                                <MenuItem value={5}>{t('mouse.apertureStyles.rainbow')}</MenuItem>
+                                <MenuItem value={6}>{t('mouse.apertureStyles.shadow')}</MenuItem>
+                            </Select>
                         }
                     />
                 </Stack>

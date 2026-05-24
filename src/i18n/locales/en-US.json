@@ -15,12 +15,23 @@
     "speed": "Speed",
     "primaryColor": "Primary Color",
     "secondaryColor": "Secondary Color",
+    "enableAperture": "Enable Cursor Aperture",
+    "apertureStyle": "Aperture Style",
     "effects": {
       "ripple": "Ripple",
       "firework": "Firework",
       "spiral": "Spiral",
       "circleStroke": "Circle Stroke",
       "rectStroke": "Rect Stroke"
+    },
+    "apertureStyles": {
+      "neon": "Neon",
+      "golden": "Golden",
+      "aurora": "Aurora",
+      "fire": "Fire",
+      "frost": "Frost",
+      "rainbow": "Rainbow",
+      "shadow": "Shadow"
     },
     "messages": {
       "enabled": "Click effect enabled",
@@ -34,7 +45,10 @@
       "secondaryColorUpdated": "Secondary color updated",
       "saveFailed": "Failed to save settings",
       "loadFailed": "Failed to load settings",
-      "vipOnly": "Click effect type is a VIP feature"
+      "vipOnly": "Click effect type is a VIP feature",
+      "apertureEnabled": "Cursor aperture enabled",
+      "apertureDisabled": "Cursor aperture disabled",
+      "apertureStyleChanged": "Aperture style changed to {{style}}"
     }
   },
   "keyboard": {

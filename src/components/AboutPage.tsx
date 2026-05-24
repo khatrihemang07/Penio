@@ -23,8 +23,6 @@
  */
 
 import { Box, Typography, Button, Stack, IconButton, Tooltip } from "@mui/material";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import EmailIcon from "@mui/icons-material/Email";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { open } from "@tauri-apps/plugin-shell";
 import { getVersion, getName, getTauriVersion } from "@tauri-apps/api/app";
@@ -32,7 +30,6 @@ import { platform, arch, version } from "@tauri-apps/plugin-os";
 import { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from "../contexts/SnackbarContext";
-import bilibiliIcon from "../assets/哔哩哔哩.svg";
 import githubIcon from "../assets/github.svg";
 
 function 关于页面() {
@@ -50,9 +47,6 @@ function 关于页面() {
         platformArch: "...",
         platformVersion: "...",
     });
-    const fiofioWebsite = "https://www.fiofio.cn";
-    const feedbackEmail = "feedback@fiofio.cn";
-    const bilibiliUrl = "https://space.bilibili.com/426988409";
     const githubUrl = "https://github.com/game1024/Penio";
 
     useEffect(() => {
@@ -73,18 +67,6 @@ function 关于页面() {
             });
         });
     }, []);
-
-    const handleWebsiteClick = async () => {
-        await open(fiofioWebsite);
-    };
-
-    const handleEmailClick = async () => {
-        await open(`mailto:${feedbackEmail}`);
-    };
-
-    const handleBilibiliClick = async () => {
-        await open(bilibiliUrl);
-    };
 
     const handleGithubClick = async () => {
         await open(githubUrl);
@@ -162,28 +144,6 @@ function 关于页面() {
 
             {/* 社交链接图标 */}
             <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
-                <Tooltip title="BiliBili" arrow>
-                    <IconButton
-                        onClick={handleBilibiliClick}
-                        sx={{
-                            width: '3rem',
-                            height: '3rem',
-                            backgroundColor: '#FFF0F5',
-                            border: '1px solid #FFD6E7',
-                            '&:hover': {
-                                backgroundColor: '#FFE6F0',
-                                border: '1px solid #FB7299',
-                            },
-                        }}
-                    >
-                        <Box
-                            component="img"
-                            src={bilibiliIcon}
-                            alt="Bilibili"
-                            sx={{ width: '1.5rem', height: '1.5rem' }}
-                        />
-                    </IconButton>
-                </Tooltip>
                 <Tooltip title="GitHub" arrow>
                     <IconButton
                         onClick={handleGithubClick}
@@ -206,40 +166,11 @@ function 关于页面() {
                         />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title={t('about.contactUs')} arrow>
-                    <IconButton
-                        onClick={handleEmailClick}
-                        sx={{
-                            width: '3rem',
-                            height: '3rem',
-                            backgroundColor: '#E3F2FD',
-                            border: '1px solid #BBDEFB',
-                            '&:hover': {
-                                backgroundColor: '#BBDEFB',
-                                border: '1px solid #2196F3',
-                            },
-                        }}
-                    >
-                        <EmailIcon sx={{ fontSize: '1.5rem', color: '#1976D2' }} />
-                    </IconButton>
-                </Tooltip>
+
             </Stack>
 
             {/* 操作按钮 */}
             <Stack spacing={2} sx={{ width: '100%', mt: 2 }}>
-                {/* 官网按钮 */}
-                <Button
-                    variant="contained"
-                    startIcon={<OpenInNewIcon />}
-                    onClick={handleWebsiteClick}
-                    sx={{
-                        py: 1.5,
-                        borderRadius: 2,
-                    }}
-                >
-                    {t('about.visitWebsite')}
-                </Button>
-
                 {/* 复制软件信息 */}
                 <Button
                     variant="outlined"
@@ -254,15 +185,6 @@ function 关于页面() {
                     {t('about.copySystemInfo')}
                 </Button>
             </Stack>
-
-            {/* 版权信息 */}
-            <Typography
-                variant="caption"
-                color="text.secondary"
-                sx={{ mt: 3, textAlign: "center" }}
-            >
-                {t('about.copyright', { year: new Date().getFullYear() })}
-            </Typography>
         </Box>
     );
 }

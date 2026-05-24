@@ -2791,6 +2791,7 @@ name = "penio"
 version = "1.0.0"
 dependencies = [
  "cocoa",
+ "core-graphics 0.23.2",
  "ctrlc",
  "machine-uid",
  "rdev",

@@ -26,6 +26,7 @@ use std::thread;
 use tauri::{AppHandle, Emitter, Manager, WindowEvent};
 use tokio::time::{interval, Duration};
 
+mod aperture;
 mod tray;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -33,6 +34,21 @@ mod tray;
 #[tauri::command]
 fn get_machine_id() -> Result<String, String> {
     machine_uid::get().map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+fn switch_aperture_style(app: AppHandle, style: String) {
+    let _ = app.emit_to("aperture", "switch-aperture-style", serde_json::json!({ "style": style }));
+}
+
+#[tauri::command]
+fn set_aperture_enabled(app: AppHandle, enabled: bool) {
+    if enabled {
+        aperture::set_aperture_disabled(false);
+        let _ = aperture::refresh_aperture(&app);
+    } else {
+        aperture::destroy_aperture(&app);
+    }
 }
 
 #[tauri::command]
@@ -46,6 +62,12 @@ async fn refresh_monitors(app: AppHandle, emit_event: bool) -> Result<(), String
     refresh_motion_boards(&app, emit_event).map_err(|e| {
         let error_msg = e.to_string();
         eprintln!("刷新显示器失败: {}", error_msg);
+        error_msg
+    })?;
+
+    aperture::refresh_aperture(&app).map_err(|e| {
+        let error_msg = e.to_string();
+        eprintln!("刷新光圈窗口失败: {}", error_msg);
         error_msg
     })
 }
@@ -489,6 +511,9 @@ fn focus_window_under_mouse(app: &tauri::AppHandle) {
 fn cleanup_windows(app: &AppHandle) {
     println!("Cleaning up all windows...");
 
+    // 关闭光圈窗口
+    aperture::destroy_aperture(app);
+
     // 关闭所有 motion-board 窗口
     for (label, window) in app.webview_windows() {
         if label.starts_with("motion-board-") {
@@ -506,7 +531,9 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
         .invoke_handler(tauri::generate_handler![
             get_machine_id,
             trigger_drawing_mode,
-            refresh_monitors
+            refresh_monitors,
+            switch_aperture_style,
+            set_aperture_enabled
         ])
         .device_event_filter(tauri::DeviceEventFilter::Always)
         .setup(|app| {
@@ -548,6 +575,12 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
                 eprintln!("Failed to create motion boards: {}", e);
             }
 
+            // 创建光圈窗口并启动光标轮询
+            if let Err(e) = aperture::create_aperture(&app_handle) {
+                eprintln!("Failed to create aperture: {}", e);
+            }
+            aperture::start_cursor_polling(app_handle.clone());
+
             start_mouse_listener(app_handle.clone());
 
             // 启动定时刷新显示器任务
@@ -558,6 +591,9 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
                     interval.tick().await;
                     if let Err(e) = refresh_motion_boards(&app_handle_for_refresh, false) {
                         eprintln!("定时刷新显示器失败: {}", e);
+                    }
+                    if let Err(e) = aperture::refresh_aperture(&app_handle_for_refresh) {
+                         eprintln!("定时刷新光圈窗口失败: {}", e);
                     }
                 }
             });

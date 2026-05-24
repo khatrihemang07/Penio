@@ -15,12 +15,23 @@
     "speed": "速率",
     "primaryColor": "主颜色",
     "secondaryColor": "副颜色",
+    "enableAperture": "开启鼠标光圈",
+    "apertureStyle": "光圈样式",
     "effects": {
       "ripple": "水波纹",
       "firework": "烟花",
       "spiral": "螺旋",
       "circleStroke": "圆形描边",
       "rectStroke": "方形描边"
+    },
+    "apertureStyles": {
+      "neon": "霓虹",
+      "golden": "金色",
+      "aurora": "极光",
+      "fire": "火焰",
+      "frost": "冰霜",
+      "rainbow": "彩虹",
+      "shadow": "暗影"
     },
     "messages": {
       "enabled": "已启用点击特效",
@@ -34,7 +45,10 @@
       "secondaryColorUpdated": "副颜色已更新",
       "saveFailed": "保存设置失败",
       "loadFailed": "加载设置失败",
-      "vipOnly": "点击特效类型为会员专享功能"
+      "vipOnly": "点击特效类型为会员专享功能",
+      "apertureEnabled": "已开启鼠标光圈",
+      "apertureDisabled": "已关闭鼠标光圈",
+      "apertureStyleChanged": "光圈样式已切换为 {{style}}"
     }
   },
   "keyboard": {

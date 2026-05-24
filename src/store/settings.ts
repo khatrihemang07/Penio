@@ -30,6 +30,9 @@ import { useShortcut } from '../hooks/useShortcut';
 // 创建 Settings Store 实例
 let settingsStore: Store | null = null;
 
+// 光圈样式类型
+export type ApertureStyle = 'neon' | 'golden' | 'aurora' | 'fire' | 'frost' | 'rainbow' | 'shadow';
+
 // 鼠标设置接口
 export interface MouseSettings {
     enableClickEffect?: boolean;
@@ -38,6 +41,8 @@ export interface MouseSettings {
     speed?: number;
     primaryColor?: string;
     secondaryColor?: string;
+    enableAperture?: boolean;
+    apertureStyle?: ApertureStyle;
 }
 
 // 键盘设置接口
@@ -82,6 +87,8 @@ const defaultSettings: AppSettings = {
         clickEffectType: 'ripple',
         scale: 1.0,
         speed: 1.0,
+        enableAperture: true,
+        apertureStyle: 'neon',
     },
     keyboard: {
         enableKeyboardEcho: true,
