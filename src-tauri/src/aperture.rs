@@ -92,9 +92,22 @@ pub fn start_cursor_polling(app_handle: AppHandle) {
             if let Ok((cx, cy)) = enigo.location() {
                 if let Some(window) = app_handle.get_webview_window("aperture") {
                     if let Ok(size) = window.inner_size() {
-                        let sf = window.scale_factor().unwrap_or(1.0);
-                        let x = cx as f64 * sf - size.width as f64 / 2.0;
-                        let y = cy as f64 * sf - size.height as f64 / 2.0;
+                        let (x, y) = {
+                            let cx = cx as f64;
+                            let cy = cy as f64;
+                            #[cfg(target_os = "macos")]
+                            {
+                                let sf = window.scale_factor().unwrap_or(1.0);
+                                (cx * sf, cy * sf)
+                            }
+                            #[cfg(not(target_os = "macos"))]
+                            {
+                                (cx, cy)
+                            }
+                        };
+                        let x = x - size.width as f64 / 2.0;
+                        let y = y - size.height as f64 / 2.0;
+                        let _ = window.set_position(PhysicalPosition::new(x, y));
                         let _ = window.set_position(PhysicalPosition::new(x, y));
                     }
                 }
