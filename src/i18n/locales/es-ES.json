@@ -15,12 +15,30 @@
     "speed": "Velocidad",
     "primaryColor": "Color primario",
     "secondaryColor": "Color secundario",
+    "clickEffect": "Efecto de clic",
     "effects": {
       "ripple": "Onda",
       "firework": "Fuegos artificiales",
       "spiral": "Espiral",
       "circleStroke": "Círculo",
       "rectStroke": "Rectángulo"
+    },
+    "aperture": "Apertura",
+    "enableAperture": "Activar apertura del cursor",
+    "apertureStyle": "Estilo de apertura",
+    "enableApertureAnimation": "Animación de apertura",
+    "apertureScale": "Escala de apertura",
+    "apertureStyles": {
+      "neon": "Neón",
+      "golden": "Dorado",
+      "aurora": "Aurora",
+      "fire": "Fuego",
+      "frost": "Escarcha",
+      "rainbow": "Arcoíris",
+      "shadow": "Sombra",
+      "sparkle": "Brillo",
+      "firefly": "Luciérnaga",
+      "ripple": "Onda"
     },
     "messages": {
       "enabled": "Efecto de clic activado",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "Color secundario actualizado",
       "saveFailed": "Error al guardar la configuración",
       "loadFailed": "Error al cargar la configuración",
-      "vipOnly": "El tipo de efecto de clic es una función premium"
+      "vipOnly": "El tipo de efecto de clic es una función premium",
+      "apertureEnabled": "Apertura del cursor activada",
+      "apertureDisabled": "Apertura del cursor desactivada",
+      "apertureStyleChanged": "Estilo de apertura cambiado a {{style}}",
+      "apertureAnimationEnabled": "Animación de apertura activada",
+      "apertureAnimationDisabled": "Animación de apertura desactivada",
+      "apertureSizeUpdated": "Tamaño de apertura actualizado"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "Alternar modo de dibujo",
     "clearAnnotation": "Borrar anotaciones",
     "shortcutHelp": "Ayuda de atajos",
+    "toolbarShortcut": "Atajo de barra de herramientas",
     "messages": {
       "shortcutUpdated": "Atajo establecido en {{shortcut}}",
       "saveFailed": "Error al guardar: {{error}}",
       "loadFailed": "Error al cargar la configuración",
       "enterDrawMode": "Modo de dibujo activado",
-      "exitDrawMode": "Modo de dibujo desactivado"
+      "exitDrawMode": "Modo de dibujo desactivado",
+      "toolbarShown": "Barra de herramientas mostrada ({{shortcut}} alternar)",
+      "toolbarHidden": "Barra de herramientas oculta ({{shortcut}} restaurar)"
     }
   },
   "general": {

@@ -15,12 +15,30 @@
     "speed": "速度",
     "primaryColor": "メインカラー",
     "secondaryColor": "サブカラー",
+    "clickEffect": "クリックエフェクト",
     "effects": {
       "ripple": "波紋",
       "firework": "花火",
       "spiral": "スパイラル",
       "circleStroke": "円形ストローク",
       "rectStroke": "矩形ストローク"
+    },
+    "aperture": "アパーチャ",
+    "enableAperture": "カーソルアパーチャを有効にする",
+    "apertureStyle": "アパーチャスタイル",
+    "enableApertureAnimation": "アパーチャアニメーション",
+    "apertureScale": "アパーチャスケール",
+    "apertureStyles": {
+      "neon": "ネオン",
+      "golden": "ゴールデン",
+      "aurora": "オーロラ",
+      "fire": "ファイア",
+      "frost": "フロスト",
+      "rainbow": "レインボー",
+      "shadow": "シャドウ",
+      "sparkle": "スパークル",
+      "firefly": "ホタル",
+      "ripple": "リップル"
     },
     "messages": {
       "enabled": "クリックエフェクトが有効になりました",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "サブカラーが更新されました",
       "saveFailed": "設定の保存に失敗しました",
       "loadFailed": "設定の読み込みに失敗しました",
-      "vipOnly": "クリックエフェクトの種類はプレミアム機能です"
+      "vipOnly": "クリックエフェクトの種類はプレミアム機能です",
+      "apertureEnabled": "カーソルアパーチャが有効になりました",
+      "apertureDisabled": "カーソルアパーチャが無効になりました",
+      "apertureStyleChanged": "アパーチャスタイルを {{style}} に変更しました",
+      "apertureAnimationEnabled": "アパーチャアニメーションが有効になりました",
+      "apertureAnimationDisabled": "アパーチャアニメーションが無効になりました",
+      "apertureSizeUpdated": "アパーチャサイズが更新されました"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "描画モード切替",
     "clearAnnotation": "注釈をクリア",
     "shortcutHelp": "ショートカットヘルプ",
+    "toolbarShortcut": "ツールバーショートカット",
     "messages": {
       "shortcutUpdated": "ショートカットが {{shortcut}} に設定されました",
       "saveFailed": "設定の保存に失敗しました: {{error}}",
       "loadFailed": "設定の読み込みに失敗しました",
       "enterDrawMode": "描画モードに入りました",
-      "exitDrawMode": "描画モードを終了しました"
+      "exitDrawMode": "描画モードを終了しました",
+      "toolbarShown": "ツールバーを表示しました ({{shortcut}} 切替)",
+      "toolbarHidden": "ツールバーを非表示にしました ({{shortcut}} 復元)"
     }
   },
   "general": {

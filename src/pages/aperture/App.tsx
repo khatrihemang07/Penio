@@ -276,7 +276,7 @@ function App() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }, [size]);
+  }, [mouseSettings, size]);
 
   // 动画循环 / 静态绘制
   useEffect(() => {

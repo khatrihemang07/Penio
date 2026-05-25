@@ -15,12 +15,30 @@
     "speed": "Vitesse",
     "primaryColor": "Couleur principale",
     "secondaryColor": "Couleur secondaire",
+    "clickEffect": "Effet de clic",
     "effects": {
       "ripple": "Ondulation",
       "firework": "Feu d'artifice",
       "spiral": "Spirale",
       "circleStroke": "Cercle",
       "rectStroke": "Rectangle"
+    },
+    "aperture": "Ouverture",
+    "enableAperture": "Activer l'ouverture du curseur",
+    "apertureStyle": "Style d'ouverture",
+    "enableApertureAnimation": "Animation d'ouverture",
+    "apertureScale": "Échelle d'ouverture",
+    "apertureStyles": {
+      "neon": "Néon",
+      "golden": "Doré",
+      "aurora": "Aurore",
+      "fire": "Feu",
+      "frost": "Givre",
+      "rainbow": "Arc-en-ciel",
+      "shadow": "Ombre",
+      "sparkle": "Étincelle",
+      "firefly": "Luciole",
+      "ripple": "Ondulation"
     },
     "messages": {
       "enabled": "Effet de clic activé",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "Couleur secondaire mise à jour",
       "saveFailed": "Échec de la sauvegarde des paramètres",
       "loadFailed": "Échec du chargement des paramètres",
-      "vipOnly": "Le type d'effet de clic est une fonctionnalité premium"
+      "vipOnly": "Le type d'effet de clic est une fonctionnalité premium",
+      "apertureEnabled": "Ouverture du curseur activée",
+      "apertureDisabled": "Ouverture du curseur désactivée",
+      "apertureStyleChanged": "Style d'ouverture changé en {{style}}",
+      "apertureAnimationEnabled": "Animation d'ouverture activée",
+      "apertureAnimationDisabled": "Animation d'ouverture désactivée",
+      "apertureSizeUpdated": "Taille d'ouverture mise à jour"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "Basculer le mode dessin",
     "clearAnnotation": "Effacer les annotations",
     "shortcutHelp": "Aide des raccourcis",
+    "toolbarShortcut": "Raccourci de la barre d'outils",
     "messages": {
       "shortcutUpdated": "Raccourci défini sur {{shortcut}}",
       "saveFailed": "Échec de la sauvegarde: {{error}}",
       "loadFailed": "Échec du chargement des paramètres",
       "enterDrawMode": "Mode dessin activé",
-      "exitDrawMode": "Mode dessin désactivé"
+      "exitDrawMode": "Mode dessin désactivé",
+      "toolbarShown": "Barre d'outils affichée ({{shortcut}} bascule)",
+      "toolbarHidden": "Barre d'outils masquée ({{shortcut}} restaurer)"
     }
   },
   "general": {

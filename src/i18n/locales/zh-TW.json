@@ -15,12 +15,30 @@
     "speed": "速率",
     "primaryColor": "主顏色",
     "secondaryColor": "副顏色",
+    "clickEffect": "點擊特效",
     "effects": {
       "ripple": "水波紋",
       "firework": "煙火",
       "spiral": "螺旋",
       "circleStroke": "圓形描邊",
       "rectStroke": "方形描邊"
+    },
+    "aperture": "光圈設定",
+    "enableAperture": "開啟滑鼠光圈",
+    "apertureStyle": "光圈樣式",
+    "enableApertureAnimation": "光圈動效",
+    "apertureScale": "光圈縮放",
+    "apertureStyles": {
+      "neon": "霓虹",
+      "golden": "金色",
+      "aurora": "極光",
+      "fire": "火焰",
+      "frost": "冰霜",
+      "rainbow": "彩虹",
+      "shadow": "暗影",
+      "sparkle": "星芒",
+      "firefly": "螢火",
+      "ripple": "漣漪"
     },
     "messages": {
       "enabled": "已啟用點擊特效",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "副顏色已更新",
       "saveFailed": "儲存設定失敗",
       "loadFailed": "載入設定失敗",
-      "vipOnly": "點擊特效類型為會員專享功能"
+      "vipOnly": "點擊特效類型為會員專享功能",
+      "apertureEnabled": "已開啟滑鼠光圈",
+      "apertureDisabled": "已關閉滑鼠光圈",
+      "apertureStyleChanged": "光圈樣式已切換為 {{style}}",
+      "apertureAnimationEnabled": "已開啟光圈動效",
+      "apertureAnimationDisabled": "已關閉光圈動效",
+      "apertureSizeUpdated": "光圈縮放已更新"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "切換繪圖模式",
     "clearAnnotation": "清空標註",
     "shortcutHelp": "快速鍵說明",
+    "toolbarShortcut": "工具列快速鍵",
     "messages": {
       "shortcutUpdated": "快速鍵已設定為 {{shortcut}}",
       "saveFailed": "儲存設定失敗: {{error}}",
       "loadFailed": "載入設定失敗",
       "enterDrawMode": "進入繪製模式",
-      "exitDrawMode": "退出繪製模式"
+      "exitDrawMode": "退出繪製模式",
+      "toolbarShown": "工具列已顯示 ({{shortcut}} 切換)",
+      "toolbarHidden": "工具列已隱藏 ({{shortcut}} 恢復)"
     }
   },
   "general": {

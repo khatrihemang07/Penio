@@ -15,12 +15,30 @@
     "speed": "속도",
     "primaryColor": "기본 색상",
     "secondaryColor": "보조 색상",
+    "clickEffect": "클릭 효과",
     "effects": {
       "ripple": "물결",
       "firework": "불꽃놀이",
       "spiral": "나선형",
       "circleStroke": "원형 스트로크",
       "rectStroke": "사각형 스트로크"
+    },
+    "aperture": "조리개",
+    "enableAperture": "커서 조리개 활성화",
+    "apertureStyle": "조리개 스타일",
+    "enableApertureAnimation": "조리개 애니메이션",
+    "apertureScale": "조리개 크기",
+    "apertureStyles": {
+      "neon": "네온",
+      "golden": "골든",
+      "aurora": "오로라",
+      "fire": "파이어",
+      "frost": "프로스트",
+      "rainbow": "레인보우",
+      "shadow": "섀도우",
+      "sparkle": "스파클",
+      "firefly": "반딧불",
+      "ripple": "리플"
     },
     "messages": {
       "enabled": "클릭 효과가 활성화되었습니다",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "보조 색상이 업데이트되었습니다",
       "saveFailed": "설정 저장에 실패했습니다",
       "loadFailed": "설정 로드에 실패했습니다",
-      "vipOnly": "클릭 효과 유형은 프리미엄 기능입니다"
+      "vipOnly": "클릭 효과 유형은 프리미엄 기능입니다",
+      "apertureEnabled": "커서 조리개가 활성화되었습니다",
+      "apertureDisabled": "커서 조리개가 비활성화되었습니다",
+      "apertureStyleChanged": "조리개 스타일이 {{style}}(으)로 변경되었습니다",
+      "apertureAnimationEnabled": "조리개 애니메이션이 활성화되었습니다",
+      "apertureAnimationDisabled": "조리개 애니메이션이 비활성화되었습니다",
+      "apertureSizeUpdated": "조리개 크기가 업데이트되었습니다"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "그리기 모드 전환",
     "clearAnnotation": "주석 지우기",
     "shortcutHelp": "단축키 도움말",
+    "toolbarShortcut": "툴바 단축키",
     "messages": {
       "shortcutUpdated": "단축키가 {{shortcut}}(으)로 설정되었습니다",
       "saveFailed": "설정 저장에 실패했습니다: {{error}}",
       "loadFailed": "설정 로드에 실패했습니다",
       "enterDrawMode": "그리기 모드 진입",
-      "exitDrawMode": "그리기 모드 종료"
+      "exitDrawMode": "그리기 모드 종료",
+      "toolbarShown": "툴바 표시됨 ({{shortcut}} 전환)",
+      "toolbarHidden": "툴바 숨김 ({{shortcut}} 복원)"
     }
   },
   "general": {

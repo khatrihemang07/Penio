@@ -15,12 +15,30 @@
     "speed": "Geschwindigkeit",
     "primaryColor": "Primärfarbe",
     "secondaryColor": "Sekundärfarbe",
+    "clickEffect": "Klickeffekt",
     "effects": {
       "ripple": "Welle",
       "firework": "Feuerwerk",
       "spiral": "Spirale",
       "circleStroke": "Kreis",
       "rectStroke": "Rechteck"
+    },
+    "aperture": "Blende",
+    "enableAperture": "Cursor-Blende aktivieren",
+    "apertureStyle": "Blendenstil",
+    "enableApertureAnimation": "Blendenanimation",
+    "apertureScale": "Blendengröße",
+    "apertureStyles": {
+      "neon": "Neon",
+      "golden": "Golden",
+      "aurora": "Aurora",
+      "fire": "Feuer",
+      "frost": "Frost",
+      "rainbow": "Regenbogen",
+      "shadow": "Schatten",
+      "sparkle": "Funkeln",
+      "firefly": "Glühwürmchen",
+      "ripple": "Welle"
     },
     "messages": {
       "enabled": "Klickeffekt aktiviert",
@@ -32,7 +50,13 @@
       "secondaryColorUpdated": "Sekundärfarbe aktualisiert",
       "saveFailed": "Einstellungen konnten nicht gespeichert werden",
       "loadFailed": "Einstellungen konnten nicht geladen werden",
-      "vipOnly": "Der Klickeffekttyp ist eine Premium-Funktion"
+      "vipOnly": "Der Klickeffekttyp ist eine Premium-Funktion",
+      "apertureEnabled": "Cursor-Blende aktiviert",
+      "apertureDisabled": "Cursor-Blende deaktiviert",
+      "apertureStyleChanged": "Blendenstil zu {{style}} geändert",
+      "apertureAnimationEnabled": "Blendenanimation aktiviert",
+      "apertureAnimationDisabled": "Blendenanimation deaktiviert",
+      "apertureSizeUpdated": "Blendengröße aktualisiert"
     }
   },
   "keyboard": {
@@ -62,12 +86,15 @@
     "toggleMode": "Zeichenmodus umschalten",
     "clearAnnotation": "Anmerkungen löschen",
     "shortcutHelp": "Tastenkürzel-Hilfe",
+    "toolbarShortcut": "Symbolleisten-Tastenkürzel",
     "messages": {
       "shortcutUpdated": "Tastenkürzel auf {{shortcut}} gesetzt",
       "saveFailed": "Speichern fehlgeschlagen: {{error}}",
       "loadFailed": "Einstellungen konnten nicht geladen werden",
       "enterDrawMode": "Zeichenmodus aktiviert",
-      "exitDrawMode": "Zeichenmodus deaktiviert"
+      "exitDrawMode": "Zeichenmodus deaktiviert",
+      "toolbarShown": "Symbolleiste angezeigt ({{shortcut}} umschalten)",
+      "toolbarHidden": "Symbolleiste ausgeblendet ({{shortcut}} wiederherstellen)"
     }
   },
   "general": {
