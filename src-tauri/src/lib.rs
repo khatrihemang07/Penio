@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use enigo::{Enigo, Mouse, Settings};
 use rdev::{Button, EventType, listen};
-use std::sync::atomic::{AtomicI64, Ordering};
 use std::thread;
 use tauri::{AppHandle, Emitter, Manager, WindowEvent};
 use tokio::time::{interval, Duration};
@@ -75,10 +75,6 @@ async fn refresh_monitors(app: AppHandle, emit_event: bool) -> Result<(), String
 #[cfg(target_os = "macos")]
 use rdev::set_is_main_thread;
 
-// 全局原子变量存储鼠标坐标（f64 的位表示）
-static MOUSE_X: AtomicI64 = AtomicI64::new(0);
-static MOUSE_Y: AtomicI64 = AtomicI64::new(0);
-
 fn start_mouse_listener(app_handle: AppHandle) {
     #[cfg(target_os = "macos")]
     set_is_main_thread(false);
@@ -86,22 +82,17 @@ fn start_mouse_listener(app_handle: AppHandle) {
     thread::spawn(move || {
         if let Err(error) = listen(move |event| {
             match event.event_type {
-                EventType::MouseMove { x, y } => {
-                    // 将 f64 转为位表示存入原子
-                    MOUSE_X.store(x.to_bits() as i64, Ordering::Relaxed);
-                    MOUSE_Y.store(y.to_bits() as i64, Ordering::Relaxed);
-                }
+                EventType::MouseMove { .. } => {}
                 EventType::ButtonPress(Button::Left) => {
-                    // 从原子读取位表示并转回 f64
-                    let x = f64::from_bits(MOUSE_X.load(Ordering::Relaxed) as u64);
-                    let y = f64::from_bits(MOUSE_Y.load(Ordering::Relaxed) as u64);
-                    let _ = app_handle.emit(
-                        "mouse-click",
-                        serde_json::json!({
-                            "x": x,
-                            "y": y
-                        }),
-                    );
+                    if let Ok((x, y)) = Enigo::new(&Settings::default()).unwrap().location() {
+                        let _ = app_handle.emit(
+                            "mouse-click",
+                            serde_json::json!({
+                                "x": x,
+                                "y": y
+                            }),
+                        );
+                    }
                     let _ = app_handle.emit(
                         "key-press",
                         serde_json::json!({
@@ -381,9 +372,7 @@ pub fn refresh_motion_boards(app: &AppHandle, emit_event: bool) -> Result<(), Bo
 fn focus_window_under_mouse(app: &tauri::AppHandle) {
     #[cfg(target_os = "windows")]
     {
-        // 从全局原子读取鼠标坐标（f64）
-        let mouse_x = f64::from_bits(MOUSE_X.load(Ordering::Relaxed) as u64) as i32;
-        let mouse_y = f64::from_bits(MOUSE_Y.load(Ordering::Relaxed) as u64) as i32;
+        let Ok((mouse_x, mouse_y)) = Enigo::new(&Settings::default()).unwrap().location() else { return };
         println!("Mouse position: ({}, {})", mouse_x, mouse_y);
 
         // 获取所有显示器信息
@@ -416,9 +405,7 @@ fn focus_window_under_mouse(app: &tauri::AppHandle) {
 
     #[cfg(target_os = "macos")]
     {
-        // 从全局原子读取鼠标坐标（f64）
-        let mouse_x = f64::from_bits(MOUSE_X.load(Ordering::Relaxed) as u64) as i32;
-        let mouse_y = f64::from_bits(MOUSE_Y.load(Ordering::Relaxed) as u64) as i32;
+        let Ok((mouse_x, mouse_y)) = Enigo::new(&Settings::default()).unwrap().location() else { return };
         println!("Mouse position: ({}, {})", mouse_x, mouse_y);
 
         // 获取所有显示器信息
@@ -464,9 +451,7 @@ fn focus_window_under_mouse(app: &tauri::AppHandle) {
 
     #[cfg(target_os = "linux")]
     {
-        // 从全局原子读取鼠标坐标（f64）
-        let mouse_x = f64::from_bits(MOUSE_X.load(Ordering::Relaxed) as u64) as i32;
-        let mouse_y = f64::from_bits(MOUSE_Y.load(Ordering::Relaxed) as u64) as i32;
+        let Ok((mouse_x, mouse_y)) = Enigo::new(&Settings::default()).unwrap().location() else { return };
         println!("Mouse position: ({}, {})", mouse_x, mouse_y);
 
         // 获取所有显示器信息
