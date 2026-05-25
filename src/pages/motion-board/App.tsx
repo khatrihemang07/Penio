@@ -257,8 +257,8 @@ function App() {
 
           switch (osType) {
             case 'macos':
-              windowX = event.payload.x - Math.round(innerPosition.x / scaleFactor);
-              windowY = event.payload.y - Math.round(innerPosition.y / scaleFactor);
+              windowX = Math.round(event.payload.x - outerPosition.x / scaleFactor);
+              windowY = Math.round(event.payload.y - outerPosition.y / scaleFactor);
               break;
             case 'linux':
               windowX = Math.round((event.payload.x - innerPosition.x) / scaleFactor);

@@ -1,5 +1,6 @@
 import * as GlobalShortcut from '@tauri-apps/plugin-global-shortcut';
 import { invoke } from '@tauri-apps/api/core';
+import { emit } from '@tauri-apps/api/event';
 import { getSettings} from '../store/settings';
 
 type ShortcutTriggerState = {
@@ -11,7 +12,6 @@ state: "Pressed" | "Released";
 export function useShortcut() {
     const register = async (shortcut: string, callback: () => void): Promise<void> => {
         try {
-            // 检查快捷键是否已经注册
             const registered = await GlobalShortcut.isRegistered(shortcut);
             if (registered) {
                 console.log('Shortcut already registered:', shortcut);
@@ -20,8 +20,7 @@ export function useShortcut() {
             await GlobalShortcut.register(shortcut, ({state}:ShortcutTriggerState) => {
                 if (state === "Pressed") return;
                 callback();
-            }
-            );
+            });
 
         } catch (error) {
             console.error(error);
@@ -44,9 +43,15 @@ export function useShortcut() {
     const initShortcut = async (): Promise<void> => {
         try {
             const settings = await getSettings();
-            const shortcut = settings.drawing?.toggleShortcut || 'Alt+`';
-            await register(shortcut, async () => {
+
+            const toggleShortcut = settings.drawing?.toggleShortcut || 'Alt+`';
+            await register(toggleShortcut, async () => {
                 await invoke('trigger_drawing_mode');
+            });
+
+            const toolbarShortcut = settings.drawing?.toolbarShortcut || 'Alt+H';
+            await register(toolbarShortcut, async () => {
+                await emit('toolbar-visibility-toggled');
             });
         } catch (error) {
             console.error('Failed to initialize shortcut:', error);
