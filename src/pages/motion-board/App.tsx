@@ -30,7 +30,7 @@ import "@excalidraw/excalidraw/fonts/fonts.css";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { clickRippleAnimate, clickFirework, clickSpiral, clickCircleStroke, clickRectStroke } from "./animation/mouse";
 import { type } from '@tauri-apps/plugin-os';
-import { Excalidraw } from "@excalidraw/excalidraw";
+import { Excalidraw, THEME } from "@excalidraw/excalidraw";
 import { useMouseSettings } from "../../hooks/useMouseSettings";
 import { useKeyboardSettings } from "../../hooks/useKeyboardSettings";
 import { useDrawingSettings } from "../../hooks/useDrawingSettings";
@@ -471,6 +471,7 @@ function App() {
         }} />
 
         {<Excalidraw
+          theme={THEME.DARK}
           excalidrawAPI={(api: any) => {
             excalidrawAPIRef.current = api;
           }}
