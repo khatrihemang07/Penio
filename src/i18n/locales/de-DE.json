@@ -88,6 +88,7 @@
     "title": "Zeicheneinstellungen",
     "toggleMode": "Zeichenmodus umschalten",
     "clearAnnotation": "Anmerkungen löschen",
+    "confirmClearAnnotation": "Vor dem Löschen bestätigen",
     "shortcutHelp": "Tastenkürzel-Hilfe",
     "toolbarShortcut": "Symbolleisten-Tastenkürzel",
     "messages": {

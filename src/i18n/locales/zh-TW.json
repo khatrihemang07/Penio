@@ -88,6 +88,7 @@
     "title": "繪圖設定",
     "toggleMode": "切換繪圖模式",
     "clearAnnotation": "清空標註",
+    "confirmClearAnnotation": "清除前確認",
     "shortcutHelp": "快速鍵說明",
     "toolbarShortcut": "工具列快速鍵",
     "messages": {

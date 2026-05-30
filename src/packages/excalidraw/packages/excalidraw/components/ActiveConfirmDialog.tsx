@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { actionClearCanvas } from "../actions";
 import { t } from "../i18n";
 import { atom, useAtom } from "../editor-jotai";
@@ -12,11 +13,23 @@ export const ActiveConfirmDialog = () => {
   );
   const actionManager = useExcalidrawActionManager();
 
+  useEffect(() => {
+    if (activeConfirmDialog === "clearCanvas") {
+      if ((window as any).__penio_confirmClearAnnotation === false) {
+        actionManager.executeAction(actionClearCanvas);
+        setActiveConfirmDialog(null);
+      }
+    }
+  }, [activeConfirmDialog]);
+
   if (!activeConfirmDialog) {
     return null;
   }
 
   if (activeConfirmDialog === "clearCanvas") {
+    if ((window as any).__penio_confirmClearAnnotation === false) {
+      return null;
+    }
     return (
       <ConfirmDialog
         onConfirm={() => {

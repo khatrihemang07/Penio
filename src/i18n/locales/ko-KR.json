@@ -88,6 +88,7 @@
     "title": "그리기 설정",
     "toggleMode": "그리기 모드 전환",
     "clearAnnotation": "주석 지우기",
+    "confirmClearAnnotation": "지우기 전 확인",
     "shortcutHelp": "단축키 도움말",
     "toolbarShortcut": "툴바 단축키",
     "messages": {

@@ -63,6 +63,7 @@ export interface KeyboardSettings {
 export interface DrawingSettings {
     toggleShortcut: string;
     toolbarShortcut: string;
+    confirmClearAnnotation?: boolean;
 }
 
 // 应用设置接口
@@ -108,6 +109,7 @@ const defaultSettings: AppSettings = {
     drawing: {
         toggleShortcut: 'Alt+`',
         toolbarShortcut: 'Alt+H',
+        confirmClearAnnotation: true,
     },
 };
 

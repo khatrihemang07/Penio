@@ -88,6 +88,7 @@
     "title": "绘图设置",
     "toggleMode": "切换绘图模式",
     "clearAnnotation": "清空标注",
+    "confirmClearAnnotation": "清除前确认",
     "shortcutHelp": "快捷键帮助",
     "toolbarShortcut": "工具栏快捷键",
     "messages": {

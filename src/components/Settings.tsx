@@ -1206,6 +1206,7 @@ function 绘图设置页面() {
     const { t } = useTranslation();
     const [toggleShortcut, setToggleShortcut] = useState('');
     const [toolbarShortcut, setToolbarShortcut] = useState('');
+    const [confirmClearAnnotation, setConfirmClearAnnotation] = useState(false);
     const { notify } = useSnackbar();
 
     // 加载设置
@@ -1215,6 +1216,7 @@ function 绘图设置页面() {
                 const settings = await getSettings();
                 setToggleShortcut(settings.drawing?.toggleShortcut);
                 setToolbarShortcut(settings.drawing?.toolbarShortcut);
+                setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? true);
             } catch (error) {
                 console.error('加载绘图设置失败:', error);
                 notify(t('drawing.messages.loadFailed'), 'error');
@@ -1261,6 +1263,21 @@ function 绘图设置页面() {
         }
     };
 
+    const handleConfirmClearChange = async (checked: boolean) => {
+        setConfirmClearAnnotation(checked);
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: {
+                    ...currentSettings.drawing,
+                    confirmClearAnnotation: checked,
+                }
+            });
+        } catch (error) {
+            console.error('保存设置失败:', error);
+        }
+    };
+
     return (
         <Box>
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('drawing.title')}</Typography>
@@ -1291,6 +1308,14 @@ function 绘图设置页面() {
                                 onChange={() => { }}
                                 disable={true}
 
+                            />
+                        } />
+                    <SettingField
+                        label={t('drawing.confirmClearAnnotation')}
+                        value={
+                            <Switch
+                                checked={confirmClearAnnotation}
+                                onChange={(e) => handleConfirmClearChange(e.target.checked)}
                             />
                         } />
                     <SettingField

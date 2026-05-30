@@ -45,6 +45,10 @@ function App() {
   const { keyboardSettings, } = useKeyboardSettings();
   const { drawingSettings, } = useDrawingSettings();
 
+  useEffect(() => {
+    (window as any).__penio_confirmClearAnnotation = drawingSettings.confirmClearAnnotation ?? true;
+  }, [drawingSettings]);
+
   // 存储鼠标穿透状态
   const [ignoreCursorEvents, setIgnoreCursorEvents] = useState(true);
 

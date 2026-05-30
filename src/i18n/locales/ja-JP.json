@@ -88,6 +88,7 @@
     "title": "描画設定",
     "toggleMode": "描画モード切替",
     "clearAnnotation": "注釈をクリア",
+    "confirmClearAnnotation": "クリア前に確認",
     "shortcutHelp": "ショートカットヘルプ",
     "toolbarShortcut": "ツールバーショートカット",
     "messages": {
