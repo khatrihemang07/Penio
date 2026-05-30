@@ -36,7 +36,7 @@ import { useKeyboardSettings } from "../../hooks/useKeyboardSettings";
 import { useDrawingSettings } from "../../hooks/useDrawingSettings";
 import { KeyLabel, MODIFIER_KEY_LIST, IGNORE_KEY_LIST, MOUSE_CLICK_KEYS } from "../../types/ModifierKey";
 import { Alert, Snackbar, Zoom } from "@mui/material";
-import i18n from "../../i18n";
+import i18n, { initLocale } from "../../i18n";
 
 function App() {
   // 从 store 加载鼠标设置
@@ -107,6 +107,15 @@ function App() {
     return () => {
       unlistenPromise.then(unlisten => unlisten());
     };
+  }, []);
+
+  useEffect(() => {
+    initLocale().then(language => {
+      if (language !== i18n.language) {
+        i18n.changeLanguage(language);
+        setLocale(language);
+      }
+    });
   }, []);
 
   // 组件挂载时初始化窗口设置

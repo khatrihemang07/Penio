@@ -25,6 +25,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { lightTheme, darkTheme } from './theme';
@@ -54,6 +55,7 @@ function ThemedApp() {
     getSettings().then(s => {
       currentSetting = s.theme;
       setMode(resolveTheme(s.theme));
+      getCurrentWindow().show();
     });
 
     const handleMedia = () => {
