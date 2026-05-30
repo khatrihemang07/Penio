@@ -155,9 +155,11 @@
     "version": "Versión {{version}}",
     "officialAccount": "Cuenta oficial",
     "visitWebsite": "Visitar sitio web",
-    "contactUs": "Contáctanos",    "copySystemInfo": "Información del sistema",
+    "contactUs": "Contáctanos",
+    "copySystemInfo": "Información del sistema",
     "copySuccess": "Información del sistema copiada al portapapeles",
-    "copyFailed": "Error al copiar, inténtelo de nuevo",    "copyright": "© {{year}} FioFio Studio. Todos los derechos reservados."
+    "copyFailed": "Error al copiar, inténtelo de nuevo",
+    "copyright": "© {{year}} FioFio Studio. Todos los derechos reservados."
   },
   "tray": {
     "preferences": "Preferencias",
@@ -186,5 +188,11 @@
     "leftClick": "LClick",
     "middleClick": "MClick",
     "rightClick": "RClick"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "La tecla Win no se puede usar como atajo de teclado",
+    "metaKeyNotSupported": "La tecla Meta no se puede usar como atajo de teclado",
+    "pressShortcut": "Presione el atajo",
+    "notSet": "No establecido"
   }
 }

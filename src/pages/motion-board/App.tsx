@@ -138,7 +138,7 @@ function App() {
 
         setIgnoreCursorEvents(newState);
         if (newState == false) {
-          setSnackbar({ open: true, message: '进入绘制模式' });
+          setSnackbar({ open: true, message: i18n.t('drawing.messages.enterDrawMode') });
           setKeyboardPanel(prev => ({ ...prev, modifierKeys: [], keys: [] }));
           await appWindow.setFocusable(true)
           await appWindow.setIgnoreCursorEvents(newState);
@@ -406,6 +406,7 @@ function App() {
         <Alert
           onClose={() => setSnackbar({ open: false, message: '' })}
           severity="info"
+          variant="filled"
         >
           {snackbar.message}
         </Alert>

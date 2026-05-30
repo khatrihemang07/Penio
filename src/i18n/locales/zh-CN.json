@@ -51,8 +51,6 @@
       "speedUpdated": "动画速度已更新",
       "primaryColorUpdated": "主颜色已更新",
       "secondaryColorUpdated": "副颜色已更新",
-      "primaryColorUpdated": "主颜色已更新",
-      "secondaryColorUpdated": "副颜色已更新",
       "saveFailed": "保存设置失败",
       "loadFailed": "加载设置失败",
       "vipOnly": "点击特效类型为会员专享功能",
@@ -190,5 +188,11 @@
     "leftClick": "鼠标左键",
     "middleClick": "鼠标中键",
     "rightClick": "鼠标右键"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "不支持使用 Win 键作为快捷键",
+    "metaKeyNotSupported": "不支持使用 Meta 键作为快捷键",
+    "pressShortcut": "按下快捷键",
+    "notSet": "未设置"
   }
 }

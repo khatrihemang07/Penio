@@ -155,9 +155,11 @@
     "version": "版本 {{version}}",
     "officialAccount": "官方公眾號",
     "visitWebsite": "造訪官網",
-    "contactUs": "聯絡我們",    "copySystemInfo": "軟體資訊",
+    "contactUs": "聯絡我們",
+    "copySystemInfo": "軟體資訊",
     "copySuccess": "軟體資訊已複製到剪貼簿",
-    "copyFailed": "複製失敗，請重試",    "copyright": "© {{year}} 飛鷗工作室. All rights reserved."
+    "copyFailed": "複製失敗，請重試",
+    "copyright": "© {{year}} 飛鷗工作室. All rights reserved."
   },
   "tray": {
     "preferences": "偏好設定",
@@ -165,7 +167,8 @@
     "website": "GitHub",
     "version": "版本 {{version}}",
     "restart": "重新啟動應用程式",
-    "quit": "結束"  },
+    "quit": "結束"
+  },
   "keys": {
     "kp0": "小鍵盤0",
     "kp1": "小鍵盤1",
@@ -184,5 +187,12 @@
     "kpPlus": "小鍵盤+",
     "leftClick": "鼠標左鍵",
     "middleClick": "鼠標中鍵",
-    "rightClick": "鼠標右鍵"  }
+    "rightClick": "鼠標右鍵"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "不支援使用 Win 鍵作為快捷鍵",
+    "metaKeyNotSupported": "不支援使用 Meta 鍵作為快捷鍵",
+    "pressShortcut": "按下快捷鍵",
+    "notSet": "未設置"
+  }
 }

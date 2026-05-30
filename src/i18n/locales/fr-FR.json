@@ -188,5 +188,11 @@
     "leftClick": "LClick",
     "middleClick": "MClick",
     "rightClick": "RClick"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "La touche Win ne peut pas être utilisée comme raccourci",
+    "metaKeyNotSupported": "La touche Meta ne peut pas être utilisée comme raccourci",
+    "pressShortcut": "Appuyez sur le raccourci",
+    "notSet": "Non défini"
   }
 }

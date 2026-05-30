@@ -22,17 +22,65 @@
  * SOFTWARE.
  */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme, darkTheme } from '../../theme';
+import { getSettings } from '../../store/settings';
+import { listen } from '@tauri-apps/api/event';
 
 import '@fontsource/fira-code/index.css';
 import '@fontsource/noto-sans/index.css';
 import '@fontsource/noto-sans-sc/index.css';
 import '@fontsource/noto-sans-tc/index.css';
 
+function resolveTheme(setting: string | undefined): 'light' | 'dark' {
+  if (setting === 'dark') return 'dark';
+  if (setting === 'light') return 'light';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function ThemedApp() {
+  const [mode, setMode] = useState<'light' | 'dark'>(() => resolveTheme(undefined));
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    let currentSetting: string | undefined;
+
+    getSettings().then(s => {
+      currentSetting = s.theme;
+      setMode(resolveTheme(s.theme));
+    });
+
+    const handleMedia = () => {
+      if (!currentSetting || currentSetting === 'auto') {
+        setMode(mediaQuery.matches ? 'dark' : 'light');
+      }
+    };
+    mediaQuery.addEventListener('change', handleMedia);
+
+    let unlisten: (() => void) | undefined;
+    listen<{ theme: string }>('theme-updated', (event) => {
+      currentSetting = event.payload.theme;
+      setMode(resolveTheme(event.payload.theme));
+    }).then(fn => { unlisten = fn; });
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleMedia);
+      unlisten?.();
+    };
+  }, []);
+
+  return (
+    <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
+      <App />
+    </ThemeProvider>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <ThemedApp />
   </React.StrictMode>,
 );

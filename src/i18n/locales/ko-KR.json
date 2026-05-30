@@ -188,5 +188,11 @@
     "leftClick": "LClick",
     "middleClick": "MClick",
     "rightClick": "RClick"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "Win 키는 단축키로 사용할 수 없습니다",
+    "metaKeyNotSupported": "Meta 키는 단축키로 사용할 수 없습니다",
+    "pressShortcut": "단축키를 누르세요",
+    "notSet": "설정 안됨"
   }
 }

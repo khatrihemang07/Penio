@@ -51,8 +51,6 @@
       "speedUpdated": "Speed updated",
       "primaryColorUpdated": "Primary color updated",
       "secondaryColorUpdated": "Secondary color updated",
-      "primaryColorUpdated": "Primary color updated",
-      "secondaryColorUpdated": "Secondary color updated",
       "saveFailed": "Failed to save settings",
       "loadFailed": "Failed to load settings",
       "vipOnly": "Click effect type is a VIP feature",
@@ -190,5 +188,11 @@
     "leftClick": "LClick",
     "middleClick": "MClick",
     "rightClick": "RClick"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "Win key is not supported as a shortcut key",
+    "metaKeyNotSupported": "Meta key is not supported as a shortcut key",
+    "pressShortcut": "Press shortcut",
+    "notSet": "Not set"
   }
 }

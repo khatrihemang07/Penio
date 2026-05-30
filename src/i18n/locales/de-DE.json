@@ -155,9 +155,11 @@
     "version": "Version {{version}}",
     "officialAccount": "Offizieller Account",
     "visitWebsite": "Website besuchen",
-    "contactUs": "Kontaktieren Sie uns",    "copySystemInfo": "Systeminformationen",
+    "contactUs": "Kontaktieren Sie uns",
+    "copySystemInfo": "Systeminformationen",
     "copySuccess": "Systeminformationen in die Zwischenablage kopiert",
-    "copyFailed": "Kopieren fehlgeschlagen, bitte versuchen Sie es erneut",    "copyright": "© {{year}} FioFio Studio. Alle Rechte vorbehalten."
+    "copyFailed": "Kopieren fehlgeschlagen, bitte versuchen Sie es erneut",
+    "copyright": "© {{year}} FioFio Studio. Alle Rechte vorbehalten."
   },
   "tray": {
     "preferences": "Einstellungen",
@@ -186,5 +188,11 @@
     "leftClick": "LClick",
     "middleClick": "MClick",
     "rightClick": "RClick"
+  },
+  "shortcut": {
+    "winKeyNotSupported": "Die Win-Taste kann nicht als Tastenkürzel verwendet werden",
+    "metaKeyNotSupported": "Die Meta-Taste kann nicht als Tastenkürzel verwendet werden",
+    "pressShortcut": "Tastenkürzel drücken",
+    "notSet": "Nicht gesetzt"
   }
 }
