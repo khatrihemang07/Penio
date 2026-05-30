@@ -96,8 +96,8 @@ const defaultSettings: AppSettings = {
         apertureScale: 1.0,
     },
     keyboard: {
-        enableKeyboardEcho: true,
-        enableClickEcho: true,
+        enableKeyboardEcho: false,
+        enableClickEcho: false,
         preview: false,
         scale: 1.0,
         fgColor: 'rgba(190,255,255,1.0)',

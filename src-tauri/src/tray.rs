@@ -25,7 +25,7 @@ use tauri::{
     tray::TrayIconBuilder,
     App, AppHandle, Manager,
 };
-use tauri_plugin_shell::ShellExt;
+use tauri_plugin_opener::OpenerExt;
 
 /// 创建系统托盘图标
 #[allow(dead_code)]
@@ -123,7 +123,7 @@ fn handle_menu_event(app: &AppHandle, event: tauri::menu::MenuEvent) {
             }
         }
         "website" => {
-            let _ = app.shell().open("https://www.fiofio.cn", None);
+            let _ = app.opener().open_url("https://www.fiofio.cn", None::<&str>);
         }
         "restart" => {
             app.restart();
