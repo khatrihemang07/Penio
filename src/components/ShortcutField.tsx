@@ -23,7 +23,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, useTheme } from "@mui/material";
 import { KeyComboTag } from "@blueprintjs/core";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import { platform } from '@tauri-apps/plugin-os';
@@ -38,6 +38,8 @@ interface ShortcutFieldProps {
 }
 
 export default function ShortcutField({ value, onChange, disable = false, minWidth = '10rem' }: ShortcutFieldProps) {
+    const theme = useTheme();
+    const isDark = theme.palette.mode === 'dark';
     const [isRecording, setIsRecording] = useState(false);
     const [currentCombo, setCurrentCombo] = useState('');
     const [isHovered, setIsHovered] = useState(false);
@@ -224,11 +226,15 @@ export default function ShortcutField({ value, onChange, disable = false, minWid
                 display: 'flex',
                 alignItems: 'center',
                 gap: 2,
-                border: '1px solid #e0e0e0',
+                border: `1px solid ${theme.palette.divider}`,
                 borderRadius: 1,
                 padding: '0.5rem 0.75rem',
                 minWidth,
-                backgroundColor: disable ? '#f5f5f5' : (isRecording ? '#e3f2fd' : '#fff'),
+                backgroundColor: disable
+                    ? theme.palette.action.disabledBackground
+                    : (isRecording
+                        ? (isDark ? 'rgba(144, 202, 249, 0.16)' : '#e3f2fd')
+                        : theme.palette.background.paper),
                 cursor: disable ? 'not-allowed' : 'pointer',
                 opacity: disable ? 0.7 : 1,
             }}
@@ -249,7 +255,7 @@ export default function ShortcutField({ value, onChange, disable = false, minWid
                                 <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                     <KeyComboTag combo={key === 'Command' ? 'meta' : key} />
                                     {index < array.length - 1 && (
-                                        <Typography sx={{ fontSize: '0.875rem', color: '#666' }}>+</Typography>
+                                        <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>+</Typography>
                                     )}
                                 </Box>
                             ))}
@@ -267,7 +273,7 @@ export default function ShortcutField({ value, onChange, disable = false, minWid
                             <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                                 <KeyComboTag combo={key === 'Command' ? 'meta' : key} />
                                 {index < array.length - 1 && (
-                                    <Typography sx={{ fontSize: '0.875rem', color: '#666' }}>+</Typography>
+                                    <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>+</Typography>
                                 )}
                             </Box>
                         ))}
@@ -288,11 +294,11 @@ export default function ShortcutField({ value, onChange, disable = false, minWid
                         display: disable ? 'none' : 'flex',
                         padding: '0.25rem',
                         '&:hover': {
-                            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                            backgroundColor: 'action.hover',
                         }
                     }}
                 >
-                    <ClearIcon sx={{ fontSize: '1rem', color: '#666' }} />
+                    <ClearIcon sx={{ fontSize: '1rem', color: 'text.secondary' }} />
                 </IconButton>
             )}
         </Box>
