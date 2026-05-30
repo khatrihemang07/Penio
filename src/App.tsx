@@ -27,6 +27,7 @@ import "./App.css";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
 import { useTranslation } from 'react-i18next';
 import i18n from './i18n';
 import { initLocale } from './i18n';
@@ -53,12 +54,13 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+  const theme = useTheme();
 
   return (
     <div
       style={{
         flexGrow: 1,
-        backgroundColor: '#eeeeee',
+        backgroundColor: theme.palette.background.default,
         overflowY: 'auto',
         height: '98vh',
       }}

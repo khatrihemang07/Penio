@@ -90,7 +90,7 @@ function App() {
   useEffect(() => {
     const setupListener = async () => {
       const appWindow = getCurrentWindow();
-      
+
       const unlisten = await appWindow.listen<{ language: string }>('language-updated', (event) => {
         console.log('Received language-updated event:', event.payload.language);
         const newLanguage = event.payload.language;

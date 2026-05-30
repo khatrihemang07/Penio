@@ -314,7 +314,7 @@ function 键盘设置页面() {
         <Box>
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('keyboard.title')}</Typography>
 
-            <Box sx={{ p: 2, backgroundColor: '#ffffff', borderRadius: 2 }}>
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', borderRadius: 2 }}>
                 <Stack direction="column" spacing={3} sx={{ p: 2 }}>
                     <SettingField
                         label={t('keyboard.enableKeyboardEcho')}
@@ -876,7 +876,7 @@ function 鼠标设置页面() {
         <Box>
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('mouse.title')}</Typography>
 
-            <Box sx={{ p: 2, backgroundColor: '#ffffff', borderRadius: 2 }}>
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', borderRadius: 2 }}>
                 <Stack direction="column" spacing={3} sx={{ p: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Box sx={{ flex: 1, borderTop: '1px solid #e0e0e0' }} />
@@ -1265,7 +1265,7 @@ function 绘图设置页面() {
         <Box>
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('drawing.title')}</Typography>
 
-            <Box sx={{ p: 2, backgroundColor: '#ffffff', borderRadius: 2 }}>
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', borderRadius: 2 }}>
                 <Stack direction="column" spacing={3} sx={{ p: 2 }}>
                     <SettingField
                         label={t('drawing.toggleMode')}
@@ -1311,6 +1311,7 @@ function 绘图设置页面() {
 function 通用设置页面() {
     const { t } = useTranslation();
     const [enableAutoStart, setEnableAutoStart] = useState(false);
+    const [appTheme, setAppTheme] = useState<'light' | 'dark' | 'auto'>('auto');
     const [hasAccessibilityPermission, setHasAccessibilityPermission] = useState(false);
     const [hasInputMonitoringPermission, setHasInputMonitoringPermission] = useState(false);
     const { notify } = useSnackbar();
@@ -1322,6 +1323,9 @@ function 通用设置页面() {
         const loadSettings = async () => {
             const isEnabled = await AutoStart.isEnabled();
             setEnableAutoStart(isEnabled);
+
+            const settings = await getSettings();
+            setAppTheme(settings.theme ?? 'auto');
 
             // 检查 macOS 权限
             if (isMac()) {
@@ -1359,6 +1363,11 @@ function 通用设置页面() {
         }
     }
 
+    const handleThemeChange = async (value: 'light' | 'dark' | 'auto') => {
+        setAppTheme(value);
+        await updateSettings({ theme: value });
+    };
+
     // 请求辅助功能权限
     const handleRequestAccessibilityPermission = async () => {
         try {
@@ -1393,7 +1402,7 @@ function 通用设置页面() {
                 }}>{t('general.permissionTitle')}</Typography>
             <Box sx={{
                 p: 2,
-                backgroundColor: '#ffffff',
+                backgroundColor: 'background.paper',
                 borderRadius: 2,
                 display: isMac() ? 'block' : 'none',
                 mb: 4
@@ -1437,9 +1446,23 @@ function 通用设置页面() {
 
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('general.title')}</Typography>
 
-            <Box sx={{ p: 2, backgroundColor: '#ffffff', borderRadius: 2 }}>
+            <Box sx={{ p: 2, backgroundColor: 'background.paper', borderRadius: 2 }}>
                 <Stack direction="column" spacing={3} sx={{ p: 2 }}>
                     <LanguageSetting />
+                    <SettingField
+                        label={t('general.theme')}
+                        value={
+                            <Select
+                                value={appTheme}
+                                size="small"
+                                onChange={(e) => handleThemeChange(e.target.value as 'light' | 'dark' | 'auto')}
+                            >
+                                <MenuItem value="light">{t('general.themeLight')}</MenuItem>
+                                <MenuItem value="dark">{t('general.themeDark')}</MenuItem>
+                                <MenuItem value="auto">{t('general.themeAuto')}</MenuItem>
+                            </Select>
+                        }
+                    />
                     <SettingField
                         label={t('general.autoStart')}
                         value={

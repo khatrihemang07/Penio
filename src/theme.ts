@@ -15,7 +15,7 @@ declare module '@mui/material/styles' {
     800?: string;
     900?: string;
   }
-  
+
   interface SimplePaletteColorOptions {
     50?: string;
     100?: string;
@@ -30,19 +30,32 @@ declare module '@mui/material/styles' {
   }
 }
 
-const theme = createTheme({
+const successPalette = {
+  main: '#2e7d32',
+  light: '#4caf50',
+  dark: '#1b5e20',
+  contrastText: '#fff',
+  ...green,
+};
+
+export const lightTheme = createTheme({
   typography: {
     fontFamily: '"Fira Code", "Noto Sans SC", "Noto Sans TC", "Noto Sans", sans-serif',
   },
   palette: {
-    success: {
-      main: '#2e7d32', // MUI 默认 success.main
-      light: '#4caf50',
-      dark: '#1b5e20',
-      contrastText: '#fff',
-      ...green, // 注入 50-900 的色阶
-    },
+    mode: 'light',
+    success: successPalette,
   },
 });
 
-export default theme;
+export const darkTheme = createTheme({
+  typography: {
+    fontFamily: '"Fira Code", "Noto Sans SC", "Noto Sans TC", "Noto Sans", sans-serif',
+  },
+  palette: {
+    mode: 'dark',
+    success: successPalette,
+  },
+});
+
+export default lightTheme;
