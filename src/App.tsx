@@ -50,10 +50,11 @@ interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
+  mounted: boolean;
 }
 
 function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, mounted, ...other } = props;
   const theme = useTheme();
 
   return (
@@ -70,7 +71,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && (
+      {mounted && (
         <Box sx={{ p: 3 }}>
           {children}
         </Box>
@@ -165,6 +166,9 @@ function App() {
   }
 
   const [tabno, setTabno] = useState(initTab);
+  const [visitedTabs, setVisitedTabs] = useState<Set<number>>(
+    () => new Set([initTab()])
+  );
 
   // 监听标签切换，更新 URL
   useEffect(() => {
@@ -179,7 +183,12 @@ function App() {
       <main className="console-container" style={{ display: 'flex' }}>
         <Tabs
           value={tabno}
-          onChange={(_, newValue) => setTabno(newValue)}
+          onChange={(_, newValue) => {
+            setTabno(newValue);
+            setVisitedTabs(prev =>
+              prev.has(newValue) ? prev : new Set([...prev, newValue])
+            );
+          }}
           orientation="vertical"
           sx={{ minWidth: '6rem' }}>
           <Tab value={TabIndex.鼠标} icon={<MouseIcon />} label={t('tabs.mouse')} />
@@ -189,19 +198,19 @@ function App() {
           <Tab value={TabIndex.关于} icon={<InfoIcon />} label={t('tabs.about')} />
         </Tabs>
 
-        <TabPanel value={tabno} index={TabIndex.鼠标}>
+        <TabPanel value={tabno} index={TabIndex.鼠标} mounted={visitedTabs.has(TabIndex.鼠标)}>
           <鼠标设置页面 />
         </TabPanel>
-        <TabPanel value={tabno} index={TabIndex.键盘}>
+        <TabPanel value={tabno} index={TabIndex.键盘} mounted={visitedTabs.has(TabIndex.键盘)}>
           <键盘设置页面 />
         </TabPanel>
-        <TabPanel value={tabno} index={TabIndex.绘图}>
+        <TabPanel value={tabno} index={TabIndex.绘图} mounted={visitedTabs.has(TabIndex.绘图)}>
           <绘图设置页面 />
         </TabPanel>
-        <TabPanel value={tabno} index={TabIndex.通用}>
+        <TabPanel value={tabno} index={TabIndex.通用} mounted={visitedTabs.has(TabIndex.通用)}>
           <通用设置页面 />
         </TabPanel>
-        <TabPanel value={tabno} index={TabIndex.关于}>
+        <TabPanel value={tabno} index={TabIndex.关于} mounted={visitedTabs.has(TabIndex.关于)}>
           <关于页面 />
         </TabPanel>
       </main>
