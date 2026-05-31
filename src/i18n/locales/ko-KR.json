@@ -99,7 +99,8 @@
       "exitDrawMode": "그리기 모드 종료",
       "toolbarShown": "툴바 표시됨 ({{shortcut}} 전환)",
       "toolbarHidden": "툴바 숨김 ({{shortcut}} 복원)"
-    }
+    },
+    "enableScrollAndPan": "마우스 스크롤 및 캔버스 패닝 활성화"
   },
   "general": {
     "title": "시스템 설정",

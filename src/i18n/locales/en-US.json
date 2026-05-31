@@ -99,7 +99,8 @@
       "exitDrawMode": "Exit drawing mode",
       "toolbarShown": "Toolbar shown ({{shortcut}} toggle)",
       "toolbarHidden": "Toolbar hidden ({{shortcut}} restore)"
-    }
+    },
+    "enableScrollAndPan": "Enable mouse scroll and canvas pan"
   },
   "general": {
     "title": "System Settings",

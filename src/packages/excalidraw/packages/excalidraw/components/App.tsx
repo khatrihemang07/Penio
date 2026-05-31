@@ -6769,7 +6769,9 @@ class App extends React.Component<AppProps, AppState> {
   public handleCanvasPanUsingWheelOrSpaceDrag = (
     event: React.PointerEvent<HTMLElement> | MouseEvent,
   ): boolean => {
-    return false;
+    if ((window as any).__penio_enableScrollAndPan === false) {
+      return false;
+    }
     if (
       !(
         gesture.pointers.size <= 1 &&
@@ -10927,7 +10929,9 @@ class App extends React.Component<AppProps, AppState> {
     (
       event: WheelEvent | React.WheelEvent<HTMLDivElement | HTMLCanvasElement>,
     ) => {
-      return;
+      if ((window as any).__penio_enableScrollAndPan === false) {
+        return;
+      }
       // if not scrolling on canvas/wysiwyg, ignore
       if (
         !(

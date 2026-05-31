@@ -52,11 +52,15 @@ function ThemedApp() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     let currentSetting: string | undefined;
 
-    getSettings().then(s => {
-      currentSetting = s.theme;
-      setMode(resolveTheme(s.theme));
-      getCurrentWindow().show();
-    });
+    getSettings()
+      .then(s => {
+        currentSetting = s.theme;
+        setMode(resolveTheme(s.theme));
+      })
+      .catch(() => {})
+      .finally(() => {
+        getCurrentWindow().show();
+      });
 
     const handleMedia = () => {
       if (!currentSetting || currentSetting === 'auto') {

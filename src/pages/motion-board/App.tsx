@@ -47,6 +47,7 @@ function App() {
 
   useEffect(() => {
     (window as any).__penio_confirmClearAnnotation = drawingSettings.confirmClearAnnotation ?? true;
+    (window as any).__penio_enableScrollAndPan = drawingSettings.enableScrollAndPan ?? true;
   }, [drawingSettings]);
 
   // 存储鼠标穿透状态

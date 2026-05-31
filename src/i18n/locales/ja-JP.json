@@ -99,7 +99,8 @@
       "exitDrawMode": "描画モードを終了しました",
       "toolbarShown": "ツールバーを表示しました ({{shortcut}} 切替)",
       "toolbarHidden": "ツールバーを非表示にしました ({{shortcut}} 復元)"
-    }
+    },
+    "enableScrollAndPan": "マウススクロールとキャンバスパンを有効にする"
   },
   "general": {
     "title": "システム設定",

@@ -99,7 +99,8 @@
       "exitDrawMode": "Zeichenmodus deaktiviert",
       "toolbarShown": "Symbolleiste angezeigt ({{shortcut}} umschalten)",
       "toolbarHidden": "Symbolleiste ausgeblendet ({{shortcut}} wiederherstellen)"
-    }
+    },
+    "enableScrollAndPan": "Mausscrollen und Canvas-Schwenken aktivieren"
   },
   "general": {
     "title": "Systemeinstellungen",

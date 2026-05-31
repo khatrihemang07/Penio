@@ -64,6 +64,7 @@ export interface DrawingSettings {
     toggleShortcut: string;
     toolbarShortcut: string;
     confirmClearAnnotation?: boolean;
+    enableScrollAndPan?: boolean;
 }
 
 // 应用设置接口
@@ -110,6 +111,7 @@ const defaultSettings: AppSettings = {
         toggleShortcut: 'Alt+`',
         toolbarShortcut: 'Alt+H',
         confirmClearAnnotation: true,
+        enableScrollAndPan: true,
     },
 };
 

@@ -99,7 +99,8 @@
       "exitDrawMode": "Mode dessin désactivé",
       "toolbarShown": "Barre d'outils affichée ({{shortcut}} bascule)",
       "toolbarHidden": "Barre d'outils masquée ({{shortcut}} restaurer)"
-    }
+    },
+    "enableScrollAndPan": "Activer le défilement souris et le panoramique"
   },
   "general": {
     "title": "Paramètres système",

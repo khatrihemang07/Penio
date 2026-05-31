@@ -99,7 +99,8 @@
       "exitDrawMode": "Modo de dibujo desactivado",
       "toolbarShown": "Barra de herramientas mostrada ({{shortcut}} alternar)",
       "toolbarHidden": "Barra de herramientas oculta ({{shortcut}} restaurar)"
-    }
+    },
+    "enableScrollAndPan": "Habilitar desplazamiento del ratón y paneo del lienzo"
   },
   "general": {
     "title": "Configuración del sistema",

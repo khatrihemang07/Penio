@@ -1207,6 +1207,7 @@ function 绘图设置页面() {
     const [toggleShortcut, setToggleShortcut] = useState('');
     const [toolbarShortcut, setToolbarShortcut] = useState('');
     const [confirmClearAnnotation, setConfirmClearAnnotation] = useState(false);
+    const [enableScrollAndPan, setEnableScrollAndPan] = useState(true);
     const { notify } = useSnackbar();
 
     // 加载设置
@@ -1217,6 +1218,7 @@ function 绘图设置页面() {
                 setToggleShortcut(settings.drawing?.toggleShortcut);
                 setToolbarShortcut(settings.drawing?.toolbarShortcut);
                 setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? true);
+                setEnableScrollAndPan(settings.drawing?.enableScrollAndPan ?? true);
             } catch (error) {
                 console.error('加载绘图设置失败:', error);
                 notify(t('drawing.messages.loadFailed'), 'error');
@@ -1260,6 +1262,21 @@ function 绘图设置页面() {
         } catch (error) {
             console.error('保存设置失败:', error);
             notify(t('drawing.messages.saveFailed', { error: String(error) }), 'error');
+        }
+    };
+
+    const handleEnableScrollAndPanChange = async (checked: boolean) => {
+        setEnableScrollAndPan(checked);
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: {
+                    ...currentSettings.drawing,
+                    enableScrollAndPan: checked,
+                }
+            });
+        } catch (error) {
+            console.error('保存设置失败:', error);
         }
     };
 
@@ -1316,6 +1333,14 @@ function 绘图设置页面() {
                             <Switch
                                 checked={confirmClearAnnotation}
                                 onChange={(e) => handleConfirmClearChange(e.target.checked)}
+                            />
+                        } />
+                    <SettingField
+                        label={t('drawing.enableScrollAndPan')}
+                        value={
+                            <Switch
+                                checked={enableScrollAndPan}
+                                onChange={(e) => handleEnableScrollAndPanChange(e.target.checked)}
                             />
                         } />
                     <SettingField

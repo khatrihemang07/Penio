@@ -99,7 +99,8 @@
       "exitDrawMode": "退出繪製模式",
       "toolbarShown": "工具列已顯示 ({{shortcut}} 切換)",
       "toolbarHidden": "工具列已隱藏 ({{shortcut}} 恢復)"
-    }
+    },
+    "enableScrollAndPan": "啟用滑鼠滾動和畫布平移"
   },
   "general": {
     "title": "系統設定",
