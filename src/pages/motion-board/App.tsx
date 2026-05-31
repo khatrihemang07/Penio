@@ -401,12 +401,6 @@ function App() {
         const currentState = api.getAppState();
         const newVisible = !currentState.toolbarVisible;
         api.updateScene({ appState: { toolbarVisible: newVisible } });
-        setSnackbar({
-          open: true,
-          message: newVisible
-            ? i18n.t('drawing.messages.toolbarShown', { shortcut: drawingSettings.toolbarShortcut })
-            : i18n.t('drawing.messages.toolbarHidden', { shortcut: drawingSettings.toolbarShortcut }),
-        });
       });
       return unlisten;
     };

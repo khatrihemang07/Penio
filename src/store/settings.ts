@@ -65,6 +65,7 @@ export interface DrawingSettings {
     toolbarShortcut: string;
     confirmClearAnnotation?: boolean;
     enableScrollAndPan?: boolean;
+    showDrawingModeNotice?: boolean;
 }
 
 // 应用设置接口

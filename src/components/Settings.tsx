@@ -1217,7 +1217,7 @@ function 绘图设置页面() {
                 const settings = await getSettings();
                 setToggleShortcut(settings.drawing?.toggleShortcut);
                 setToolbarShortcut(settings.drawing?.toolbarShortcut);
-                setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? true);
+                setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? false);
                 setEnableScrollAndPan(settings.drawing?.enableScrollAndPan ?? true);
             } catch (error) {
                 console.error('加载绘图设置失败:', error);

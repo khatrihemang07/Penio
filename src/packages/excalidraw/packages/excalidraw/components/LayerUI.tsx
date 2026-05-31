@@ -145,22 +145,6 @@ const LayerUI = ({
   const [toastMsg, setToastMsg] = React.useState<string | null>(null);
   const toolbarVisible = appState.toolbarVisible;
 
-  // show toast when toolbar toggled
-  const prevVisibleRef = React.useRef(toolbarVisible);
-  React.useEffect(() => {
-    if (prevVisibleRef.current === toolbarVisible) return;
-    prevVisibleRef.current = toolbarVisible;
-    const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
-    const key = isMac ? "⌘+H" : "Ctrl+H";
-    setToastMsg(
-      toolbarVisible
-        ? `工具栏已显示 (${key} 切换)`
-        : `工具栏已隐藏 (${key} 恢复)`,
-    );
-    const timer = setTimeout(() => setToastMsg(null), 2000);
-    return () => clearTimeout(timer);
-  }, [toolbarVisible]);
-
   const TunnelsJotaiProvider = tunnels.tunnelsJotai.Provider;
 
   const [eyeDropperState, setEyeDropperState] = useAtom(activeEyeDropperAtom);
