@@ -69,7 +69,19 @@ jobs:
         with:
           tagName: v${{ steps.get_version.outputs.version }}
           releaseName: 'Penio v${{ steps.get_version.outputs.version }} (Unsigned)'
-          releaseBody: 'Unsigned build. macOS users: right-click → Open to bypass Gatekeeper on first launch.'
+          releaseBody: |
+            ## Install Instructions
+
+            **macOS** — The app is ad-hoc signed but not notarized. After dragging to Applications:
+            - Right-click the app → **Open** → click Open in the dialog, OR
+            - If you still see "damaged", run in Terminal:
+              ```
+              sudo xattr -rd com.apple.quarantine /Applications/Penio.app
+              ```
+
+            **Windows** — If SmartScreen appears, click "More info" → "Run anyway".
+
+            **Linux** — `.deb` for Debian/Ubuntu, `.rpm` for Fedora/RHEL, `.AppImage` runs without install.
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
