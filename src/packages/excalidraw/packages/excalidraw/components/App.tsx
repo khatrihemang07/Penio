@@ -2328,6 +2328,10 @@ class App extends React.Component<AppProps, AppState> {
           : scene.appState.activeTool,
       isLoading: false,
       toast: this.state.toast,
+      currentItemStrokeWidth:
+        scene.appState.activeTool.type === "freedraw"
+          ? 1
+          : scene.appState.currentItemStrokeWidth,
     };
     if (initialData?.scrollToContent) {
       scene.appState = {
@@ -4727,6 +4731,13 @@ class App extends React.Component<AppProps, AppState> {
         this.store.shouldCaptureIncrement();
       }
 
+      const toolSpecificResets: Partial<AppState> =
+        nextActiveTool.type === "freedraw"
+          ? { currentItemStrokeWidth: 1 }
+          : prevState.activeTool.type === "freedraw"
+            ? { currentItemStrokeWidth: 2 }
+            : {};
+
       if (nextActiveTool.type !== "selection") {
         return {
           ...prevState,
@@ -4736,12 +4747,14 @@ class App extends React.Component<AppProps, AppState> {
           editingGroupId: null,
           multiElement: null,
           ...commonResets,
+          ...toolSpecificResets,
         };
       }
       return {
         ...prevState,
         activeTool: nextActiveTool,
         ...commonResets,
+        ...toolSpecificResets,
       };
     });
   };
