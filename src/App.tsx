@@ -70,9 +70,11 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      <Box sx={{ p: 3 }}>
-        {children}
-      </Box>
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          {children}
+        </Box>
+      )}
     </div>
   );
 }
@@ -90,6 +92,7 @@ function App() {
       if (language !== i18n.language) {
         await i18n.changeLanguage(language);
       }
+      // await getCurrentWindow().setTitle(i18n.t('tray.preferences'));
       // 语言初始化完成后创建托盘
       await createTray();
       await initShortcut();
@@ -106,6 +109,7 @@ function App() {
       
       const unlisten = await appWindow.listen<{ language: string }>('language-updated', () => {
         updateTray();
+        getCurrentWindow().setTitle(i18n.t('tray.preferences'));
       });
 
       return unlisten;

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.md">简体中文</a> | <a href="README_EN.md">English</a> | <a href="README_JA.md">日本語</a> | <a href="README_KO.md">한국어</a> | <a href="README_FR.md">Français</a> | <a href="README_DE.md">Deutsch</a>
+  <a href="README_CN.md">简体中文</a> | <a href="README.md">English</a> | <a href="README_JA.md">日本語</a> | <a href="README_KO.md">한국어</a> | <a href="README_FR.md">Français</a> | <a href="README_DE.md">Deutsch</a>
 </p>
 
 <p align="center">
@@ -18,33 +18,33 @@
 
 <p align="center">
 	
-  <img src="https://api.visitorbadge.io/api/visitors?path=game1024.penio&countColor=%234ecdc4">
+  <img src="https://api.visitorbadge.io/api/visitors?path=khatrihemang07.penio&countColor=%234ecdc4">
   <br/>
     
-  <a href="https://github.com/game1024/Penio/stargazers">
-    <img src="https://img.shields.io/github/stars/game1024/Penio?style=for-the-badge&color=yellow" alt="GitHub Stars">
+  <a href="https://github.com/khatrihemang07/Penio/stargazers">
+    <img src="https://img.shields.io/github/stars/khatrihemang07/Penio?style=for-the-badge&color=yellow" alt="GitHub Stars">
   </a>
 
-  <img src="https://img.shields.io/github/forks/game1024/Penio?style=for-the-badge&color=8a2be2" alt="GitHub Forks">
+  <img src="https://img.shields.io/github/forks/khatrihemang07/Penio?style=for-the-badge&color=8a2be2" alt="GitHub Forks">
 
-  <a href="https://github.com/game1024/Penio/issues">
-    <img src="https://img.shields.io/github/issues-raw/game1024/Penio?style=for-the-badge&label=Issues&color=orange" alt="Github Issues">
+  <a href="https://github.com/khatrihemang07/Penio/issues">
+    <img src="https://img.shields.io/github/issues-raw/khatrihemang07/Penio?style=for-the-badge&label=Issues&color=orange" alt="Github Issues">
   </a>
   <br/>  
   
-  <a href="https://github.com/game1024/Penio/releases">
-    <img src="https://img.shields.io/github/downloads/game1024/Penio/total?style=for-the-badge" alt="Downloads">
+  <a href="https://github.com/khatrihemang07/Penio/releases">
+    <img src="https://img.shields.io/github/downloads/khatrihemang07/Penio/total?style=for-the-badge" alt="Downloads">
   </a>
-  <a href="https://github.com/game1024/Penio/releases">
-    <img src="https://img.shields.io/github/v/release/game1024/Penio?style=for-the-badge&color=brightgreen" alt="Version">
+  <a href="https://github.com/khatrihemang07/Penio/releases">
+    <img src="https://img.shields.io/github/v/release/khatrihemang07/Penio?style=for-the-badge&color=brightgreen" alt="Version">
   </a>
-  <a href="https://github.com/game1024/Penio">
+  <a href="https://github.com/khatrihemang07/Penio">
     <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightblue?style=for-the-badge" alt="Platform">
   </a>
   <br/>
   
-  <a href="https://github.com/game1024/Penio/commits">
-    <img src="https://img.shields.io/github/commit-activity/m/game1024/Penio?style=for-the-badge" alt="커밋 활동">
+  <a href="https://github.com/khatrihemang07/Penio/commits">
+    <img src="https://img.shields.io/github/commit-activity/m/khatrihemang07/Penio?style=for-the-badge" alt="커밋 활동">
   </a>
   <img src="https://img.shields.io/badge/language-TypeScript%20%7C%20Rust-blue?style=for-the-badge">
   <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge">
@@ -61,7 +61,7 @@
 
 ### 설치 프로그램 다운로드
 
-[Releases](https://github.com/game1024/Penio/releases) 페이지에서 운영 체제에 맞는 설치 프로그램을 다운로드하세요:
+[Releases](https://github.com/khatrihemang07/Penio/releases) 페이지에서 운영 체제에 맞는 설치 프로그램을 다운로드하세요:
 
 - **Windows**: 
   
@@ -202,16 +202,15 @@ penio/
 ## 🎁 프로젝트 지원
 이 프로젝트가 도움이 되셨다면 ⭐️ Star를 눌러주세요!
 
-[GitHub Sponsors](https://github.com/sponsors/game1024)를 통해 개발을 지원할 수도 있습니다.
+[GitHub Sponsors](https://github.com/sponsors/khatrihemang07)를 통해 개발을 지원할 수도 있습니다.
 
 ---
 
 ## 📮 연락처
 
-- **웹사이트**: https://github.com/game1024
-- **BiliBili**: [@game1024](https://space.bilibili.com/426988409)
-- **GitHub Issues**: [문제 보고](https://github.com/game1024/Penio/issues)
+- **웹사이트**: https://github.com/khatrihemang07
+- **GitHub Issues**: [문제 보고](https://github.com/khatrihemang07/Penio/issues)
 
 ---
 
-[![Star History Chart](https://api.star-history.com/svg?repos=game1024/Penio&type=date&legend=top-left)](https://www.star-history.com/#game1024/Penio&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=khatrihemang07/Penio&type=date&legend=top-left)](https://www.star-history.com/#khatrihemang07/Penio&type=date&legend=top-left)
