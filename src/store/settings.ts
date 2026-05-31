@@ -88,11 +88,11 @@ const defaultSettings: AppSettings = {
     autoStart: false,
     minimizeToTray: true,
     mouse: {
-        enableClickEffect: true,
+        enableClickEffect: false,
         clickEffectType: 'ripple',
         scale: 1.0,
         speed: 1.0,
-        enableAperture: true,
+        enableAperture: false,
         apertureStyle: 'neon',
         enableApertureAnimation: true,
         apertureScale: 1.0,
