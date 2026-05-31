@@ -70,11 +70,9 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      <Box sx={{ p: 3 }}>
+        {children}
+      </Box>
     </div>
   );
 }

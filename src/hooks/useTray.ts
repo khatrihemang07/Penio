@@ -62,7 +62,7 @@ export function useTray() {
                 id: 'website',
                 text: t('tray.website'),
                 action: async () => {
-                    await open('https://github.com/game1024/Penio');
+                    await open('https://github.com/khatrihemang07/Penio');
                 }
             },
             PredefinedMenuItem.new({ item: 'Separator' }),

@@ -47,7 +47,7 @@ function 关于页面() {
         platformArch: "...",
         platformVersion: "...",
     });
-    const githubUrl = "https://github.com/game1024/Penio";
+    const githubUrl = "https://github.com/khatrihemang07/Penio";
 
     useEffect(() => {
         getName().then(setAppName);
