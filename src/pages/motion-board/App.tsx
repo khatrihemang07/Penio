@@ -152,7 +152,9 @@ function App() {
 
         setIgnoreCursorEvents(newState);
         if (newState == false) {
-          setSnackbar({ open: true, message: i18n.t('drawing.messages.enterDrawMode') });
+          if (drawingSettings.showDrawingModeNotice ?? true) {
+            setSnackbar({ open: true, message: i18n.t('drawing.messages.enterDrawMode') });
+          }
           setKeyboardPanel(prev => ({ ...prev, modifierKeys: [], keys: [] }));
           await appWindow.setFocusable(true)
           await appWindow.setIgnoreCursorEvents(newState);
@@ -229,6 +231,9 @@ function App() {
 
   useEffect(() => {
     // 监听来自 Rust 的全局鼠标事件
+    const unlisteners: (() => void)[] = [];
+    let cancelled = false;
+
     const setupListener = async () => {
       const appWindow = getCurrentWindow();
 
@@ -236,6 +241,8 @@ function App() {
         console.log('refresh-monitors event received:', event);
         setKeyboardPanel(prev => ({ ...prev, modifierKeys: [], keys: [] }));
       });
+      if (cancelled) { unlistenRefreshMonitors(); return; }
+      unlisteners.push(unlistenRefreshMonitors);
 
       // 监听鼠标点击事件
       // 如果鼠标穿透关闭,不处理点击事件
@@ -301,10 +308,12 @@ function App() {
           console.error('Error handling mouse-click event:', error);
         }
       });
+      if (cancelled) { unlistenMouseDown(); return; }
+      unlisteners.push(unlistenMouseDown);
 
       if (!keyboardSettings.enableKeyboardEcho) {
         setKeyboardPanel(prev => ({ ...prev, modifierKeys: [], keys: [] }));
-        return [unlistenMouseDown];
+        return;
       }
 
       // 监听键盘按下事件
@@ -348,6 +357,8 @@ function App() {
           });
         }
       });
+      if (cancelled) { unlistenKeyPress(); return; }
+      unlisteners.push(unlistenKeyPress);
 
       // 监听键盘释放事件
       const unlistenKeyRelease = await appWindow.listen<{ key: string }>('key-release', async (event) => {
@@ -362,17 +373,15 @@ function App() {
           setKeyboardPanel(prev => ({ ...prev, keys: prev.keys.filter(k => k !== keyName) }));
         }
       });
-
-      return [unlistenRefreshMonitors, unlistenMouseDown, unlistenKeyPress, unlistenKeyRelease];
+      if (cancelled) { unlistenKeyRelease(); return; }
+      unlisteners.push(unlistenKeyRelease);
     };
 
-    const unlistenPromise = setupListener();
+    setupListener();
 
-    // 组件卸载时清理
     return () => {
-      unlistenPromise.then(unlisteners => {
-        unlisteners.forEach(unlisten => unlisten());
-      });
+      cancelled = true;
+      unlisteners.forEach(fn => fn());
     };
   }, [ignoreCursorEvents, mouseSettings, keyboardSettings]);
 
