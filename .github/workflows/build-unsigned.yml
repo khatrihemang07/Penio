@@ -51,6 +51,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libudev-dev xdg-utils
 
+      - name: Import self-signed signing cert (macOS only)
+        if: contains(matrix.platform, 'macos')
+        run: |
+          echo "${{ secrets.SELF_SIGNED_CERT_P12 }}" | base64 --decode > /tmp/penio-signing.p12
+          security create-keychain -p "peniosigning" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "peniosigning" build.keychain
+          security set-keychain-settings -u build.keychain
+          security import /tmp/penio-signing.p12 -k build.keychain -P "peniosigning" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "peniosigning" build.keychain
+          security list-keychains -d user -s build.keychain
+          rm /tmp/penio-signing.p12
+
       - name: Install frontend dependencies
         run: bun install
 

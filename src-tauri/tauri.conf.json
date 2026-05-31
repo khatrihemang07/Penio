@@ -59,7 +59,7 @@
       "minimumSystemVersion": "10.13",
       "frameworks": [],
       "exceptionDomain": null,
-      "signingIdentity": "-",
+      "signingIdentity": "Penio Dev",
       "providerShortName": null,
       "entitlements": "entitlements.plist",
       "files": {
