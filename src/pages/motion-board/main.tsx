@@ -74,7 +74,7 @@ function ThemedApp() {
 
   return (
     <ThemeProvider theme={mode === 'dark' ? darkTheme : lightTheme}>
-      <App />
+      <App theme={mode} />
     </ThemeProvider>
   );
 }

@@ -38,7 +38,7 @@ import { KeyLabel, MODIFIER_KEY_LIST, IGNORE_KEY_LIST, MOUSE_CLICK_KEYS } from "
 import { Alert, Snackbar, Zoom } from "@mui/material";
 import i18n, { initLocale } from "../../i18n";
 
-function App() {
+function App({ theme }: { theme: 'light' | 'dark' }) {
   // 从 store 加载鼠标设置
   const { mouseSettings, } = useMouseSettings();
 
@@ -489,7 +489,7 @@ function App() {
         }} />
 
         {<Excalidraw
-          theme={THEME.DARK}
+          theme={theme === 'dark' ? THEME.DARK : THEME.LIGHT}
           excalidrawAPI={(api: any) => {
             excalidrawAPIRef.current = api;
           }}
