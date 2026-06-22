@@ -32,8 +32,9 @@ import { listen } from '@tauri-apps/api/event';
  */
 export function useDrawingSettings() {
     const [drawingSettings, setDrawingSettings] = useState<DrawingSettings>({
-        toggleShortcut: 'Alt+`',
+        toggleShortcut: 'Alt+1',
         toolbarShortcut: 'Alt+H',
+        toggleAndClearShortcut: 'Alt+`',
     });
     const [loading, setLoading] = useState(true);
 
