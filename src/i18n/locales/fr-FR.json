@@ -87,6 +87,7 @@
   "drawing": {
     "title": "Paramètres de dessin",
     "toggleMode": "Basculer le mode dessin",
+    "toggleAndClearMode": "Basculer le mode dessin et effacer",
     "clearAnnotation": "Effacer les annotations",
     "confirmClearAnnotation": "Confirmer avant d'effacer",
     "shortcutHelp": "Aide des raccourcis",

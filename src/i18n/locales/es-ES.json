@@ -87,6 +87,7 @@
   "drawing": {
     "title": "Configuración de dibujo",
     "toggleMode": "Alternar modo de dibujo",
+    "toggleAndClearMode": "Alternar modo de dibujo y limpiar",
     "clearAnnotation": "Borrar anotaciones",
     "confirmClearAnnotation": "Confirmar antes de borrar",
     "shortcutHelp": "Ayuda de atajos",

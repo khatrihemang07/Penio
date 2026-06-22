@@ -87,6 +87,7 @@
   "drawing": {
     "title": "Zeicheneinstellungen",
     "toggleMode": "Zeichenmodus umschalten",
+    "toggleAndClearMode": "Zeichenmodus umschalten & leeren",
     "clearAnnotation": "Anmerkungen löschen",
     "confirmClearAnnotation": "Vor dem Löschen bestätigen",
     "shortcutHelp": "Tastenkürzel-Hilfe",

@@ -87,6 +87,7 @@
   "drawing": {
     "title": "그리기 설정",
     "toggleMode": "그리기 모드 전환",
+    "toggleAndClearMode": "그리기 모드 전환 및 지우기",
     "clearAnnotation": "주석 지우기",
     "confirmClearAnnotation": "지우기 전 확인",
     "shortcutHelp": "단축키 도움말",

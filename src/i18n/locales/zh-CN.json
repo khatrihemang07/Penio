@@ -87,6 +87,7 @@
   "drawing": {
     "title": "绘图设置",
     "toggleMode": "切换绘图模式",
+    "toggleAndClearMode": "切换绘图模式并清空",
     "clearAnnotation": "清空标注",
     "confirmClearAnnotation": "清除前确认",
     "shortcutHelp": "快捷键帮助",

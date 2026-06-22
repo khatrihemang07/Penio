@@ -87,6 +87,7 @@
   "drawing": {
     "title": "Drawing Settings",
     "toggleMode": "Toggle Drawing Mode",
+    "toggleAndClearMode": "Toggle Drawing Mode & Clear",
     "clearAnnotation": "Clear Annotation",
     "confirmClearAnnotation": "Confirm before clearing",
     "shortcutHelp": "Shortcut Help",

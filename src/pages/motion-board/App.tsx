@@ -391,6 +391,24 @@ function App({ theme }: { theme: 'light' | 'dark' }) {
   const ignoreCursorEventsRef = useRef(ignoreCursorEvents);
   ignoreCursorEventsRef.current = ignoreCursorEvents;
 
+  // 监听 Alt+` 触发的清除画布事件
+  useEffect(() => {
+    const setupListener = async () => {
+      const appWindow = getCurrentWindow();
+      const unlisten = await appWindow.listen('trigger-clear-canvas', () => {
+        excalidrawAPIRef.current?.updateScene({
+          elements: [],
+          appState: { currentItemStrokeWidth: 1 },
+        });
+      });
+      return unlisten;
+    };
+    const unlistenPromise = setupListener();
+    return () => {
+      unlistenPromise.then(unlisten => unlisten());
+    };
+  }, []);
+
   // 监听全局快捷键触发的工具栏可见性切换事件
   useEffect(() => {
     const setupListener = async () => {

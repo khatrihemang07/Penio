@@ -44,7 +44,7 @@ export function useShortcut() {
         try {
             const settings = await getSettings();
 
-            const toggleShortcut = settings.drawing?.toggleShortcut || 'Alt+`';
+            const toggleShortcut = settings.drawing?.toggleShortcut || 'Alt+1';
             await register(toggleShortcut, async () => {
                 await invoke('trigger_drawing_mode');
             });
@@ -52,6 +52,12 @@ export function useShortcut() {
             const toolbarShortcut = settings.drawing?.toolbarShortcut || 'Alt+H';
             await register(toolbarShortcut, async () => {
                 await emit('toolbar-visibility-toggled');
+            });
+
+            const toggleAndClearShortcut = settings.drawing?.toggleAndClearShortcut || 'Alt+`';
+            await register(toggleAndClearShortcut, async () => {
+                await emit('trigger-clear-canvas');
+                await invoke('trigger_drawing_mode');
             });
         } catch (error) {
             console.error('Failed to initialize shortcut:', error);

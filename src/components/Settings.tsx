@@ -1206,6 +1206,7 @@ function 绘图设置页面() {
     const { t } = useTranslation();
     const [toggleShortcut, setToggleShortcut] = useState('');
     const [toolbarShortcut, setToolbarShortcut] = useState('');
+    const [toggleAndClearShortcut, setToggleAndClearShortcut] = useState('');
     const [confirmClearAnnotation, setConfirmClearAnnotation] = useState(false);
     const [enableScrollAndPan, setEnableScrollAndPan] = useState(true);
     const { notify } = useSnackbar();
@@ -1217,6 +1218,7 @@ function 绘图设置页面() {
                 const settings = await getSettings();
                 setToggleShortcut(settings.drawing?.toggleShortcut);
                 setToolbarShortcut(settings.drawing?.toolbarShortcut);
+                setToggleAndClearShortcut(settings.drawing?.toggleAndClearShortcut);
                 setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? false);
                 setEnableScrollAndPan(settings.drawing?.enableScrollAndPan ?? true);
             } catch (error) {
@@ -1237,6 +1239,25 @@ function 绘图设置页面() {
                 drawing: {
                     ...currentSettings.drawing,
                     toggleShortcut: shortcut,
+                }
+            });
+            notify(t('drawing.messages.shortcutUpdated', { shortcut }), 'success');
+        } catch (error) {
+            console.error('保存设置失败:', error);
+            notify(t('drawing.messages.saveFailed', { error: String(error) }), 'error');
+        }
+    };
+
+    // 处理切换绘图模式并清空快捷键变化
+    const handleToggleAndClearShortcutChange = async (shortcut: string) => {
+        setToggleAndClearShortcut(shortcut);
+
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: {
+                    ...currentSettings.drawing,
+                    toggleAndClearShortcut: shortcut,
                 }
             });
             notify(t('drawing.messages.shortcutUpdated', { shortcut }), 'success');
@@ -1307,6 +1328,14 @@ function 绘图设置页面() {
                             <ShortcutField
                                 value={toggleShortcut}
                                 onChange={handleShortcutChange}
+                            />
+                        } />
+                    <SettingField
+                        label={t('drawing.toggleAndClearMode')}
+                        value={
+                            <ShortcutField
+                                value={toggleAndClearShortcut}
+                                onChange={handleToggleAndClearShortcutChange}
                             />
                         } />
                     <SettingField

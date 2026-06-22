@@ -63,6 +63,7 @@ export interface KeyboardSettings {
 export interface DrawingSettings {
     toggleShortcut: string;
     toolbarShortcut: string;
+    toggleAndClearShortcut: string;
     confirmClearAnnotation?: boolean;
     enableScrollAndPan?: boolean;
     showDrawingModeNotice?: boolean;
@@ -109,8 +110,9 @@ const defaultSettings: AppSettings = {
         offsetY: 0,
     },
     drawing: {
-        toggleShortcut: 'Alt+`',
+        toggleShortcut: 'Alt+1',
         toolbarShortcut: 'Alt+H',
+        toggleAndClearShortcut: 'Alt+`',
         confirmClearAnnotation: true,
         enableScrollAndPan: true,
     },
@@ -133,7 +135,11 @@ export const getSettings = async (): Promise<AppSettings> => {
         ...settings,
         mouse: { ...defaultSettings.mouse, ...settings?.mouse },
         keyboard: { ...defaultSettings.keyboard, ...settings?.keyboard },
-        drawing: {...defaultSettings.drawing, ...settings?.drawing },
+        drawing: {
+            ...defaultSettings.drawing,
+            ...settings?.drawing,
+            ...(settings?.drawing?.toggleShortcut === 'Alt+`' ? { toggleShortcut: 'Alt+1' } : {}),
+        },
     };
 };
 
@@ -200,6 +206,17 @@ export const updateSettings = async (newSettings: Partial<AppSettings>) => {
             if (updatedSettings.drawing.toolbarShortcut && updatedSettings.drawing.toolbarShortcut != "") {
                 await register(updatedSettings.drawing.toolbarShortcut, async () => {
                     await emit('toolbar-visibility-toggled');
+                })
+            }
+
+            // 切换绘图模式并自动清除画布快捷键
+            if (currentSettings.drawing.toggleAndClearShortcut) {
+                await unregister(currentSettings.drawing.toggleAndClearShortcut);
+            }
+            if (updatedSettings.drawing.toggleAndClearShortcut && updatedSettings.drawing.toggleAndClearShortcut != "") {
+                await register(updatedSettings.drawing.toggleAndClearShortcut, async () => {
+                    await emit('trigger-clear-canvas');
+                    await invoke('trigger_drawing_mode');
                 })
             }
         } catch (error: any) {
