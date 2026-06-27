@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "",
     "eyeDropper": "Vyberte barvu z plátna",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Dosud neexistují žádné položky...",

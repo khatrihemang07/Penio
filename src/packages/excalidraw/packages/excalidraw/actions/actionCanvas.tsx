@@ -115,7 +115,7 @@ export const actionClearCanvas = register({
         currentItemRoundness: appState.currentItemRoundness,
         stats: appState.stats,
         pasteDialog: appState.pasteDialog,
-        currentItemStrokeWidth: appState.activeTool.type === "freedraw" ? 1 : appState.currentItemStrokeWidth,
+        currentItemStrokeWidth: appState.activeTool.type === "freedraw" ? 0.7 : appState.currentItemStrokeWidth,
         toolbarVisible: appState.toolbarVisible,
         activeTool:
           appState.activeTool.type === "image"

@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Ta bort alla element från rutan",
     "eyeDropper": "Välj färg från canvas",
     "textToDiagram": "Text till diagram",
-    "prompt": "Fråga"
+    "prompt": "Fråga",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Inga objekt tillagda ännu...",

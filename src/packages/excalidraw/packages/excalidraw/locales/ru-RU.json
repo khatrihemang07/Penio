@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "",
     "eyeDropper": "Взять образец цвета с холста",
     "textToDiagram": "Текст в диаграмму",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Пока ничего не добавлено...",

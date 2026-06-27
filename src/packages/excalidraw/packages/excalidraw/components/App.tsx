@@ -2330,7 +2330,7 @@ class App extends React.Component<AppProps, AppState> {
       toast: this.state.toast,
       currentItemStrokeWidth:
         scene.appState.activeTool.type === "freedraw"
-          ? 1
+          ? 0.7
           : scene.appState.currentItemStrokeWidth,
     };
     if (initialData?.scrollToContent) {
@@ -4733,7 +4733,7 @@ class App extends React.Component<AppProps, AppState> {
 
       const toolSpecificResets: Partial<AppState> =
         nextActiveTool.type === "freedraw"
-          ? { currentItemStrokeWidth: 1 }
+          ? { currentItemStrokeWidth: 0.7 }
           : prevState.activeTool.type === "freedraw"
             ? { currentItemStrokeWidth: 2 }
             : {};

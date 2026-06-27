@@ -101,7 +101,10 @@
       "toolbarShown": "Barre d'outils affichée ({{shortcut}} bascule)",
       "toolbarHidden": "Barre d'outils masquée ({{shortcut}} restaurer)"
     },
-    "enableScrollAndPan": "Activer le défilement souris et le panoramique"
+    "enableScrollAndPan": "Activer le défilement souris et le panoramique",
+    "penPressureSensitivity": "Sensibilité à la pression du stylet",
+    "penSmoothing": "Lissage du trait",
+    "penStreamline": "Stabilisation du trait"
   },
   "general": {
     "title": "Paramètres système",

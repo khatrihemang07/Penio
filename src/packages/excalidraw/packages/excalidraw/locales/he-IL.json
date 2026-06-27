@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "הסר את כל האלמנטים שבמסגרת",
     "eyeDropper": "",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "עוד לא הוספת דברים...",

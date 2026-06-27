@@ -101,7 +101,10 @@
       "toolbarShown": "工具列已顯示 ({{shortcut}} 切換)",
       "toolbarHidden": "工具列已隱藏 ({{shortcut}} 恢復)"
     },
-    "enableScrollAndPan": "啟用滑鼠滾動和畫布平移"
+    "enableScrollAndPan": "啟用滑鼠滾動和畫布平移",
+    "penPressureSensitivity": "鋼筆壓力靈敏度",
+    "penSmoothing": "筆畫平滑度",
+    "penStreamline": "筆畫穩定度"
   },
   "general": {
     "title": "系統設定",

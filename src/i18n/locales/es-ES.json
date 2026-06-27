@@ -101,7 +101,10 @@
       "toolbarShown": "Barra de herramientas mostrada ({{shortcut}} alternar)",
       "toolbarHidden": "Barra de herramientas oculta ({{shortcut}} restaurar)"
     },
-    "enableScrollAndPan": "Habilitar desplazamiento del ratón y paneo del lienzo"
+    "enableScrollAndPan": "Habilitar desplazamiento del ratón y paneo del lienzo",
+    "penPressureSensitivity": "Sensibilidad a la presión del lápiz",
+    "penSmoothing": "Suavizado del trazo",
+    "penStreamline": "Estabilización del trazo"
   },
   "general": {
     "title": "Configuración del sistema",

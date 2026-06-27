@@ -101,7 +101,10 @@
       "toolbarShown": "Symbolleiste angezeigt ({{shortcut}} umschalten)",
       "toolbarHidden": "Symbolleiste ausgeblendet ({{shortcut}} wiederherstellen)"
     },
-    "enableScrollAndPan": "Mausscrollen und Canvas-Schwenken aktivieren"
+    "enableScrollAndPan": "Mausscrollen und Canvas-Schwenken aktivieren",
+    "penPressureSensitivity": "Stiftdruckempfindlichkeit",
+    "penSmoothing": "Strich-Glättung",
+    "penStreamline": "Strich-Stabilisierung"
   },
   "general": {
     "title": "Systemeinstellungen",

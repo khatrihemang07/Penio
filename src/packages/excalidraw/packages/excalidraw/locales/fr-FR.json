@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Supprimer tous les éléments du cadre",
     "eyeDropper": "Choisir la couleur depuis la toile",
     "textToDiagram": "Texte vers Diagramme",
-    "prompt": "Consignes"
+    "prompt": "Consignes",
+    "hairline": "Très fin"
   },
   "library": {
     "noItems": "Aucun élément n'a encore été ajouté ...",

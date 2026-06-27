@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Hapus semua elemen dari bingkai",
     "eyeDropper": "Ambil warna dari kanvas",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Belum ada item yang ditambahkan...",

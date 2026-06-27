@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "",
     "eyeDropper": "Alegere culoare din pânză",
     "textToDiagram": "Text la diagramă",
-    "prompt": "Solicitare"
+    "prompt": "Solicitare",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Niciun element adăugat încă...",

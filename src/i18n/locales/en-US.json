@@ -101,7 +101,10 @@
       "toolbarShown": "Toolbar shown ({{shortcut}} toggle)",
       "toolbarHidden": "Toolbar hidden ({{shortcut}} restore)"
     },
-    "enableScrollAndPan": "Enable mouse scroll and canvas pan"
+    "enableScrollAndPan": "Enable mouse scroll and canvas pan",
+    "penPressureSensitivity": "Pen Pressure Sensitivity",
+    "penSmoothing": "Stroke Smoothing",
+    "penStreamline": "Stroke Stabilization"
   },
   "general": {
     "title": "System Settings",

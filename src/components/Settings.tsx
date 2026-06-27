@@ -1209,6 +1209,9 @@ function 绘图设置页面() {
     const [toggleAndClearShortcut, setToggleAndClearShortcut] = useState('');
     const [confirmClearAnnotation, setConfirmClearAnnotation] = useState(false);
     const [enableScrollAndPan, setEnableScrollAndPan] = useState(true);
+    const [penPressureSensitivity, setPenPressureSensitivity] = useState(0.6);
+    const [penSmoothing, setPenSmoothing] = useState(0.5);
+    const [penStreamline, setPenStreamline] = useState(0.5);
     const { notify } = useSnackbar();
 
     // 加载设置
@@ -1221,6 +1224,9 @@ function 绘图设置页面() {
                 setToggleAndClearShortcut(settings.drawing?.toggleAndClearShortcut);
                 setConfirmClearAnnotation(settings.drawing?.confirmClearAnnotation ?? false);
                 setEnableScrollAndPan(settings.drawing?.enableScrollAndPan ?? true);
+                setPenPressureSensitivity(settings.drawing?.penPressureSensitivity ?? 0.6);
+                setPenSmoothing(settings.drawing?.penSmoothing ?? 0.5);
+                setPenStreamline(settings.drawing?.penStreamline ?? 0.5);
             } catch (error) {
                 console.error('加载绘图设置失败:', error);
                 notify(t('drawing.messages.loadFailed'), 'error');
@@ -1316,6 +1322,45 @@ function 绘图设置页面() {
         }
     };
 
+    const handlePenPressureSensitivityChange = async (value: number) => {
+        const clamped = Math.max(0, Math.min(1, value));
+        setPenPressureSensitivity(clamped);
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: { ...currentSettings.drawing, penPressureSensitivity: clamped }
+            });
+        } catch (error) {
+            console.error('保存设置失败:', error);
+        }
+    };
+
+    const handlePenSmoothingChange = async (value: number) => {
+        const clamped = Math.max(0, Math.min(1, value));
+        setPenSmoothing(clamped);
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: { ...currentSettings.drawing, penSmoothing: clamped }
+            });
+        } catch (error) {
+            console.error('保存设置失败:', error);
+        }
+    };
+
+    const handlePenStreamlineChange = async (value: number) => {
+        const clamped = Math.max(0, Math.min(1, value));
+        setPenStreamline(clamped);
+        try {
+            const currentSettings = await getSettings();
+            await updateSettings({
+                drawing: { ...currentSettings.drawing, penStreamline: clamped }
+            });
+        } catch (error) {
+            console.error('保存设置失败:', error);
+        }
+    };
+
     return (
         <Box>
             <Typography variant="h5" sx={{ m: 1, mb: 3, display: "block" }}>{t('drawing.title')}</Typography>
@@ -1380,6 +1425,84 @@ function 绘图设置页面() {
                                 onChange={() => { }}
                                 disable={true}
                             />
+                        } />
+                    <SettingField
+                        label={t('drawing.penPressureSensitivity')}
+                        value={
+                            <>
+                                <Slider
+                                    value={penPressureSensitivity}
+                                    onChange={(_, value) => handlePenPressureSensitivityChange(value as number)}
+                                    min={0}
+                                    max={1}
+                                    step={0.1}
+                                    valueLabelDisplay="auto"
+                                    sx={{ width: '9.375rem', mr: 2 }}
+                                />
+                                <TextField
+                                    value={penPressureSensitivity}
+                                    onChange={(e) => {
+                                        const value = Number(e.target.value);
+                                        if (!isNaN(value)) handlePenPressureSensitivityChange(value);
+                                    }}
+                                    type="number"
+                                    size="small"
+                                    sx={{ width: 'max-content' }}
+                                    inputProps={{ min: 0, max: 1, step: 0.1 }}
+                                />
+                            </>
+                        } />
+                    <SettingField
+                        label={t('drawing.penSmoothing')}
+                        value={
+                            <>
+                                <Slider
+                                    value={penSmoothing}
+                                    onChange={(_, value) => handlePenSmoothingChange(value as number)}
+                                    min={0}
+                                    max={1}
+                                    step={0.1}
+                                    valueLabelDisplay="auto"
+                                    sx={{ width: '9.375rem', mr: 2 }}
+                                />
+                                <TextField
+                                    value={penSmoothing}
+                                    onChange={(e) => {
+                                        const value = Number(e.target.value);
+                                        if (!isNaN(value)) handlePenSmoothingChange(value);
+                                    }}
+                                    type="number"
+                                    size="small"
+                                    sx={{ width: 'max-content' }}
+                                    inputProps={{ min: 0, max: 1, step: 0.1 }}
+                                />
+                            </>
+                        } />
+                    <SettingField
+                        label={t('drawing.penStreamline')}
+                        value={
+                            <>
+                                <Slider
+                                    value={penStreamline}
+                                    onChange={(_, value) => handlePenStreamlineChange(value as number)}
+                                    min={0}
+                                    max={1}
+                                    step={0.1}
+                                    valueLabelDisplay="auto"
+                                    sx={{ width: '9.375rem', mr: 2 }}
+                                />
+                                <TextField
+                                    value={penStreamline}
+                                    onChange={(e) => {
+                                        const value = Number(e.target.value);
+                                        if (!isNaN(value)) handlePenStreamlineChange(value);
+                                    }}
+                                    type="number"
+                                    size="small"
+                                    sx={{ width: 'max-content' }}
+                                    inputProps={{ min: 0, max: 1, step: 0.1 }}
+                                />
+                            </>
                         } />
                 </Stack>
             </Box>

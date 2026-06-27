@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Видалити всі елементи з фрейму",
     "eyeDropper": "Вибрати колір з полотна",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Тут поки пусто...",

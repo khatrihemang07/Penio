@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "프레임의 모든 요소 삭제",
     "eyeDropper": "캔버스에서 색상 고르기",
     "textToDiagram": "텍스트를 다이어그램으로",
-    "prompt": "프롬프트"
+    "prompt": "프롬프트",
+    "hairline": "극세"
   },
   "library": {
     "noItems": "추가된 아이템 없음",

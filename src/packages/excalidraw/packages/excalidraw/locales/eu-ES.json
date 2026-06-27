@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Kendu markoko elementu guztiak",
     "eyeDropper": "Aukeratu kolorea oihaletik",
     "textToDiagram": "Testutik diagramara",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Oraindik ez da elementurik gehitu...",

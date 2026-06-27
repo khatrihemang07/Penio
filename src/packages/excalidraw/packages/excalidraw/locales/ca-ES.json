@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Eliminat tots els elements del marc",
     "eyeDropper": "",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Encara no s'hi han afegit elements...",

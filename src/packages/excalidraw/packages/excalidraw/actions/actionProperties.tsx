@@ -32,6 +32,7 @@ import {
   SloppinessArchitectIcon,
   SloppinessArtistIcon,
   SloppinessCartoonistIcon,
+  StrokeWidthHairlineIcon,
   StrokeWidthBaseIcon,
   StrokeWidthBoldIcon,
   StrokeWidthExtraBoldIcon,
@@ -475,6 +476,12 @@ export const actionChangeStrokeWidth = register({
       <ButtonIconSelect
         group="stroke-width"
         options={[
+          {
+            value: STROKE_WIDTH.hairline,
+            text: t("labels.hairline"),
+            icon: StrokeWidthHairlineIcon,
+            testId: "strokeWidth-hairline",
+          },
           {
             value: STROKE_WIDTH.thin,
             text: t("labels.thin"),

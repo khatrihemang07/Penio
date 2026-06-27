@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Rimuovi tutti gli elementi dal riquadro",
     "eyeDropper": "Scegli il colore della tela",
     "textToDiagram": "Testo a diagramma",
-    "prompt": "Prompt"
+    "prompt": "Prompt",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Nessun elemento ancora aggiunto...",

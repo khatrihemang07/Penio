@@ -48,6 +48,9 @@ function App({ theme }: { theme: 'light' | 'dark' }) {
   useEffect(() => {
     (window as any).__penio_confirmClearAnnotation = drawingSettings.confirmClearAnnotation ?? true;
     (window as any).__penio_enableScrollAndPan = drawingSettings.enableScrollAndPan ?? true;
+    (window as any).__penio_penPressureSensitivity = drawingSettings.penPressureSensitivity ?? 0.6;
+    (window as any).__penio_penSmoothing = drawingSettings.penSmoothing ?? 0.5;
+    (window as any).__penio_penStreamline = drawingSettings.penStreamline ?? 0.5;
   }, [drawingSettings]);
 
   // 存储鼠标穿透状态
@@ -398,7 +401,7 @@ function App({ theme }: { theme: 'light' | 'dark' }) {
       const unlisten = await appWindow.listen('trigger-clear-canvas', () => {
         excalidrawAPIRef.current?.updateScene({
           elements: [],
-          appState: { currentItemStrokeWidth: 1 },
+          appState: {},
         });
       });
       return unlisten;

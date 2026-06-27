@@ -67,6 +67,9 @@ export interface DrawingSettings {
     confirmClearAnnotation?: boolean;
     enableScrollAndPan?: boolean;
     showDrawingModeNotice?: boolean;
+    penPressureSensitivity?: number;
+    penSmoothing?: number;
+    penStreamline?: number;
 }
 
 // 应用设置接口
@@ -110,11 +113,14 @@ const defaultSettings: AppSettings = {
         offsetY: 0,
     },
     drawing: {
-        toggleShortcut: 'Alt+1',
+        toggleShortcut: 'Alt+`',
         toolbarShortcut: 'Alt+H',
-        toggleAndClearShortcut: 'Alt+`',
+        toggleAndClearShortcut: 'Alt+1',
         confirmClearAnnotation: true,
         enableScrollAndPan: true,
+        penPressureSensitivity: 0.6,
+        penSmoothing: 0.5,
+        penStreamline: 0.5,
     },
 };
 
@@ -138,7 +144,7 @@ export const getSettings = async (): Promise<AppSettings> => {
         drawing: {
             ...defaultSettings.drawing,
             ...settings?.drawing,
-            ...(settings?.drawing?.toggleShortcut === 'Alt+`' ? { toggleShortcut: 'Alt+1' } : {}),
+            ...(settings?.drawing?.toggleShortcut === 'Alt+1' ? { toggleShortcut: 'Alt+`' } : {}),
         },
     };
 };

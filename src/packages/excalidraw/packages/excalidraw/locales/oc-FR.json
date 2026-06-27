@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Tirar totes los elements d’al quadre",
     "eyeDropper": "Prendre la color a partir d’un canabàs",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Cap d’element pas encara apondut...",

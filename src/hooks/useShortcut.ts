@@ -44,7 +44,7 @@ export function useShortcut() {
         try {
             const settings = await getSettings();
 
-            const toggleShortcut = settings.drawing?.toggleShortcut || 'Alt+1';
+            const toggleShortcut = settings.drawing?.toggleShortcut || 'Alt+`';
             await register(toggleShortcut, async () => {
                 await invoke('trigger_drawing_mode');
             });
@@ -54,7 +54,7 @@ export function useShortcut() {
                 await emit('toolbar-visibility-toggled');
             });
 
-            const toggleAndClearShortcut = settings.drawing?.toggleAndClearShortcut || 'Alt+`';
+            const toggleAndClearShortcut = settings.drawing?.toggleAndClearShortcut || 'Alt+1';
             await register(toggleAndClearShortcut, async () => {
                 await emit('trigger-clear-canvas');
                 await invoke('trigger_drawing_mode');

@@ -101,7 +101,10 @@
       "toolbarShown": "工具栏已显示 ({{shortcut}} 切换)",
       "toolbarHidden": "工具栏已隐藏 ({{shortcut}} 恢复)"
     },
-    "enableScrollAndPan": "启用鼠标滚动和画布平移"
+    "enableScrollAndPan": "启用鼠标滚动和画布平移",
+    "penPressureSensitivity": "钢笔压力灵敏度",
+    "penSmoothing": "笔画平滑度",
+    "penStreamline": "笔画稳定度"
   },
   "general": {
     "title": "系统设置",

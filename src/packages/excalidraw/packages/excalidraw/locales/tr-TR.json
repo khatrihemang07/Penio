@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "Çerçevedeki tüm bileşenleri sil",
     "eyeDropper": "Tuvalden renk seç",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Öğe eklenmedi...",

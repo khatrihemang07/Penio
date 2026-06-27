@@ -138,7 +138,8 @@
     "removeAllElementsFromFrame": "",
     "eyeDropper": "",
     "textToDiagram": "",
-    "prompt": ""
+    "prompt": "",
+    "hairline": "Hairline"
   },
   "library": {
     "noItems": "Aínda non hai elementos engadidos...",
